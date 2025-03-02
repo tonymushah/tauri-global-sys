@@ -7,3 +7,6 @@ dist = "../dist"
 [serve]
 port = 1420
 open = false
+
+[watch]
+watch = "../../../crates/sys/"
