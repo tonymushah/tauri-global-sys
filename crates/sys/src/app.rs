@@ -1,3 +1,4 @@
+/// `wasm-bindgen` raw bindings
 pub mod raw;
 
 /// Gets the application name.

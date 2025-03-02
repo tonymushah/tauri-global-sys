@@ -1,9 +1,12 @@
 use js_sys::JsString;
 
+/// The equivalent of the [`window.__TAURI__.app`](https://v1.tauri.app/v1/api/js/app) module
 pub mod app;
+/// The equivalent of the [`window.__TAURI__.tauri`](https://v1.tauri.app/v1/api/js/tauri) module
+pub mod tauri;
 
 #[derive(Debug, thiserror::Error)]
-pub enum Error{
+pub enum Error {
     #[error("{0}")]
     Tauri(String),
     #[error(transparent)]
@@ -11,7 +14,7 @@ pub enum Error{
     #[error("Cannot convert a JsString to an Rust string")]
     JsStringToString,
     #[error("invalid type expected {0}")]
-    InvalidType(String)
+    InvalidType(String),
 }
 
 impl Error {
@@ -21,7 +24,7 @@ impl Error {
     pub(crate) fn tauri_js_string_ref(message: &JsString) -> Self {
         if let Some(message) = message.as_string() {
             Self::tauri(message)
-        }else {
+        } else {
             Self::JsStringToString
         }
     }
