@@ -1,8 +1,8 @@
+trunk-version = "^0.21.7"
+
 [build]
 target = "./index.html"
-
-[watch]
-ignore = ["./src-tauri"]
+dist = "../dist"
 
 [serve]
 port = 1420

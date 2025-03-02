@@ -1,0 +1,12 @@
+[package]
+name = "tauri-global-sys"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+
+[dependencies]
+serde.workspace = true
+wasm-bindgen.workspace = true
+serde-wasm-bindgen.workspace = true
+js-sys.workspace = true
+thiserror.workspace = true
