@@ -1,13 +1,7 @@
 use leptos::task::spawn_local;
 use leptos::{ev::SubmitEvent, prelude::*};
 use serde::{Deserialize, Serialize};
-use wasm_bindgen::prelude::*;
-
-#[wasm_bindgen]
-extern "C" {
-    #[wasm_bindgen(js_namespace = ["window", "__TAURI__", "tauri"])]
-    async fn invoke(cmd: &str, args: JsValue) -> JsValue;
-}
+use tauri_global_sys::tauri::invoke;
 
 #[derive(Serialize, Deserialize)]
 struct GreetArgs<'a> {
@@ -32,9 +26,9 @@ pub fn App() -> impl IntoView {
                 return;
             }
 
-            let args = serde_wasm_bindgen::to_value(&GreetArgs { name: &name }).unwrap();
+            let args = GreetArgs { name: &name };
             // Learn more about Tauri commands at https://v1.tauri.app/v1/guides/features/command
-            let new_msg = invoke("greet", args).await.as_string().unwrap();
+            let new_msg = invoke("greet", &args).await.unwrap();
             set_greet_msg.set(new_msg);
         });
     };

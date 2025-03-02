@@ -1981,6 +1981,7 @@ dependencies = [
  "serde",
  "serde-wasm-bindgen",
  "stylance",
+ "tauri-global-sys",
  "wasm-bindgen",
  "wasm-bindgen-futures",
 ]
