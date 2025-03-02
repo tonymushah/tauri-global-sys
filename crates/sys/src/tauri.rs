@@ -1,4 +1,3 @@
-use js_sys::JsString;
 use serde::{Deserialize, Serialize};
 use wasm_bindgen::JsValue;
 
