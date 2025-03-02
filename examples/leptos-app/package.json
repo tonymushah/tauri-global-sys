@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "trunk serve --config frontend/Trunk.toml",
+    "build": "trunk build --config frontend/Trunk.toml"
   },
   "keywords": [],
   "author": "",
