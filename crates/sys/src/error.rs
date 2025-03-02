@@ -1,0 +1,43 @@
+use js_sys::JsString;
+use serde::de::DeserializeOwned;
+use wasm_bindgen::JsValue;
+
+#[derive(Debug, thiserror::Error)]
+pub enum Error {
+    #[error("{0}")]
+    Tauri(String),
+    #[error(transparent)]
+    SerdeWasm(#[from] serde_wasm_bindgen::Error),
+    #[error("Cannot convert a JsString to an Rust string")]
+    JsStringToString,
+    #[error("invalid type expected {0}")]
+    InvalidType(String),
+    #[error("invoke error: {:?}", .0)]
+    Invoke(JsValue),
+}
+
+impl Error {
+    pub(crate) fn tauri(message: String) -> Self {
+        Self::Tauri(message)
+    }
+    pub(crate) fn tauri_js_string_ref(message: &JsString) -> Self {
+        if let Some(message) = message.as_string() {
+            Self::tauri(message)
+        } else {
+            Self::JsStringToString
+        }
+    }
+    pub(crate) fn tauri_js_string(message: JsString) -> Self {
+        Self::tauri_js_string_ref(&message)
+    }
+    pub fn parse_invoke_error<O>(&self) -> Option<O>
+    where
+        O: DeserializeOwned,
+    {
+        if let Self::Invoke(value) = self {
+            serde_wasm_bindgen::from_value(value.clone()).ok()
+        } else {
+            None
+        }
+    }
+}
