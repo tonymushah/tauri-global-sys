@@ -10,3 +10,4 @@ wasm-bindgen.workspace = true
 serde-wasm-bindgen.workspace = true
 js-sys.workspace = true
 thiserror.workspace = true
+wasm-bindgen-futures.workspace = true
