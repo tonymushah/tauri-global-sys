@@ -5,20 +5,20 @@ extern "C" {
     /// Gets the application name.
     ///
     /// Usable since Tauri 1.0.0
-    #[wasm_bindgen(js_name = getName)]
-    pub async fn get_name() -> js_sys::JsString;
+    #[wasm_bindgen(js_name = getName, catch)]
+    pub async fn get_name() -> Result<js_sys::JsString, JsValue>;
 
     /// Get the Tauri Version.
     ///
     /// Usable since Tauri 1.0.0
-    #[wasm_bindgen(js_name = getTauriVersion)]
-    pub async fn get_tauri_version() -> js_sys::JsString;
+    #[wasm_bindgen(js_name = getTauriVersion, catch)]
+    pub async fn get_tauri_version() -> Result<js_sys::JsString, JsValue>;
 
     /// Gets the application version.
     ///
     /// Usable since Tauri 1.0.0
-    #[wasm_bindgen(js_name = getVersion)]
-    pub async fn get_version() -> js_sys::JsString;
+    #[wasm_bindgen(js_name = getVersion, catch)]
+    pub async fn get_version() -> Result<js_sys::JsString, JsValue>;
 
     /// Hides the application on macOS.
     ///
@@ -26,7 +26,7 @@ extern "C" {
     ///
     /// Require `tauri.allowlist.app.hide` set to `true`
     #[wasm_bindgen(catch)]
-    pub async fn hide() -> Result<(), js_sys::JsString>;
+    pub async fn hide() -> Result<(), JsValue>;
 
     /// Show the application on macOS.
     ///
@@ -34,6 +34,6 @@ extern "C" {
     ///
     /// Require `tauri.allowlist.app.show` set to `true`
     #[wasm_bindgen(catch)]
-    pub async fn show() -> Result<(), js_sys::JsString>;
+    pub async fn show() -> Result<(), JsValue>;
 
 }

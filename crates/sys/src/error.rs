@@ -1,6 +1,6 @@
 use js_sys::JsString;
 use serde::de::DeserializeOwned;
-use wasm_bindgen::JsValue;
+use wasm_bindgen::{JsCast, JsValue};
 
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
@@ -14,6 +14,10 @@ pub enum Error {
     InvalidType(String),
     #[error("invoke error: {:?}", .0)]
     Invoke(JsValue),
+    #[error("event emit error: {:?}", .0)]
+    EventEmit(JsValue),
+    #[error("event listen error: {:?}", .0)]
+    EventListen(JsValue),
 }
 
 impl Error {
@@ -38,6 +42,15 @@ impl Error {
             serde_wasm_bindgen::from_value(value.clone()).ok()
         } else {
             None
+        }
+    }
+}
+
+impl From<JsValue> for Error {
+    fn from(value: JsValue) -> Self {
+        match value.dyn_into::<JsString>() {
+            Ok(message) => Self::tauri_js_string(message),
+            Err(other) => Self::Invoke(other),
         }
     }
 }
