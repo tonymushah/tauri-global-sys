@@ -1999,6 +1999,7 @@ dependencies = [
  "tauri-global-sys",
  "wasm-bindgen",
  "wasm-bindgen-futures",
+ "web-sys",
 ]
 
 [[package]]

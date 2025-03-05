@@ -18,3 +18,4 @@ console_log = { workspace = true, features = ["color"] }
 serde_json.workspace = true
 log.workspace = true
 futures.workspace = true
+web-sys.workspace = true
