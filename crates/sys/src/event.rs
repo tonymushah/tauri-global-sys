@@ -19,9 +19,9 @@ pub struct Event<T> {
     pub window_label: Option<String>,
 }
 
-pub async fn emit<P: Serialize>(event: String, payload: &P) -> Result<(), crate::Error> {
+pub async fn emit<P: Serialize>(event: &str, payload: &P) -> Result<(), crate::Error> {
     let value = serde_wasm_bindgen::to_value(payload)?;
-    raw::emit(&event, &value).await?;
+    raw::emit(event, &value).await?;
     Ok(())
 }
 
