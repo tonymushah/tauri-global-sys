@@ -14,10 +14,8 @@ pub enum Error {
     InvalidType(String),
     #[error("invoke error: {:?}", .0)]
     Invoke(JsValue),
-    #[error("event emit error: {:?}", .0)]
-    EventEmit(JsValue),
-    #[error("event listen error: {:?}", .0)]
-    EventListen(JsValue),
+    #[error(transparent)]
+    FuturesOneshotCanceled(#[from] futures::channel::oneshot::Canceled),
 }
 
 impl Error {

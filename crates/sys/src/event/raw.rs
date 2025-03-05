@@ -67,11 +67,20 @@ extern "C" {
     /// Emits an event to the backend and all Tauri windows.
     ///
     /// Since 1.0.0
-    pub async fn emit(event: &str, payload: &JsValue);
+    #[wasm_bindgen(catch)]
+    pub async fn emit(event: &str, payload: &JsValue) -> Result<(), JsValue>;
 
     /// Listen to an event. The event can be either global or window-specific.
-    pub async fn listen(event: &str, handler: &Closure<dyn FnMut(JsValue)>) -> js_sys::Function;
+    #[wasm_bindgen(catch)]
+    pub async fn listen(
+        event: &str,
+        handler: &Closure<dyn FnMut(JsValue)>,
+    ) -> Result<js_sys::Function, JsValue>;
 
     // Listen to an event once.
-    pub async fn once(event: &str, handler: &Closure<dyn FnMut(JsValue)>) -> js_sys::Function;
+    #[wasm_bindgen(catch)]
+    pub async fn once(
+        event: &str,
+        handler: &Closure<dyn FnMut(JsValue)>,
+    ) -> Result<js_sys::Function, JsValue>;
 }
