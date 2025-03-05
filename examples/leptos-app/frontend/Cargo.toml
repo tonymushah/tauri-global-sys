@@ -14,3 +14,5 @@ serde-wasm-bindgen.workspace = true
 console_error_panic_hook.workspace = true
 stylance.workspace = true
 tauri-global-sys.workspace = true
+serde_json.workspace = true
+log.workspace = true

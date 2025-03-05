@@ -1978,8 +1978,10 @@ dependencies = [
  "console_error_panic_hook",
  "js-sys",
  "leptos",
+ "log",
  "serde",
  "serde-wasm-bindgen",
+ "serde_json",
  "stylance",
  "tauri-global-sys",
  "wasm-bindgen",
@@ -3829,7 +3831,9 @@ dependencies = [
 name = "tauri-global-sys"
 version = "1.0.0"
 dependencies = [
+ "futures",
  "js-sys",
+ "log",
  "serde",
  "serde-wasm-bindgen",
  "thiserror 2.0.11",

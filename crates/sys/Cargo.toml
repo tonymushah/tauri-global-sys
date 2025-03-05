@@ -11,3 +11,8 @@ serde-wasm-bindgen.workspace = true
 js-sys.workspace = true
 thiserror.workspace = true
 wasm-bindgen-futures.workspace = true
+futures.workspace = true
+log = { optional = true, workspace = true }
+
+[features]
+log = ["dep:log"]
