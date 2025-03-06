@@ -9,6 +9,7 @@ use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
 
 pub mod raw;
+pub mod tauri_events;
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct Event<T> {
