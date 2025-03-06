@@ -3848,6 +3848,7 @@ dependencies = [
  "futures",
  "js-sys",
  "log",
+ "semver",
  "serde",
  "serde-wasm-bindgen",
  "serde_json",

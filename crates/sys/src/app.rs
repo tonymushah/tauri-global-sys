@@ -1,3 +1,5 @@
+use semver::Version;
+
 /// `wasm-bindgen` raw bindings
 pub mod raw;
 
@@ -11,15 +13,19 @@ pub async fn get_name() -> crate::Result<String> {
 /// Get the Tauri Version.
 ///
 /// Usable since Tauri 1.0.0
-pub async fn get_tauri_version() -> crate::Result<String> {
-    Ok(raw::get_tauri_version().await?.into())
+pub async fn get_tauri_version() -> crate::Result<Version> {
+    Ok(serde_wasm_bindgen::from_value(
+        raw::get_tauri_version().await?.into(),
+    )?)
 }
 
 /// Gets the application version.
 ///
 /// Usable since Tauri 1.0.0
-pub async fn get_version() -> crate::Result<String> {
-    Ok(raw::get_version().await?.into())
+pub async fn get_version() -> crate::Result<Version> {
+    Ok(serde_wasm_bindgen::from_value(
+        raw::get_version().await?.into(),
+    )?)
 }
 
 /// Show the application on macOS.

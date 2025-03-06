@@ -13,6 +13,7 @@ thiserror.workspace = true
 wasm-bindgen-futures.workspace = true
 futures.workspace = true
 log = { optional = true, workspace = true }
+semver = { workspace = true, features = ["serde"]}
 
 [dev-dependencies]
 serde_json.workspace = true
