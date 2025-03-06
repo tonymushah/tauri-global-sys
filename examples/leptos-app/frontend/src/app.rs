@@ -1,61 +1,34 @@
-use leptos::task::spawn_local;
-use leptos::{ev::SubmitEvent, prelude::*};
-use serde::{Deserialize, Serialize};
-use tauri_global_sys::tauri::invoke;
+pub mod components;
+pub mod hooks;
 
-#[derive(Serialize, Deserialize)]
-struct GreetArgs<'a> {
-    name: &'a str,
-}
+use components::{greet::Greet, test_event::TestEvent};
+use leptos::prelude::*;
 
 #[component]
 pub fn App() -> impl IntoView {
-    let (name, set_name) = signal(String::new());
-    let (greet_msg, set_greet_msg) = signal(String::new());
-
-    let update_name = move |ev| {
-        let v = event_target_value(&ev);
-        set_name.set(v);
-    };
-
-    let greet = move |ev: SubmitEvent| {
-        ev.prevent_default();
-        spawn_local(async move {
-            let name = name.get_untracked();
-            if name.is_empty() {
-                return;
-            }
-
-            let args = GreetArgs { name: &name };
-            // Learn more about Tauri commands at https://v1.tauri.app/v1/guides/features/command
-            let new_msg = invoke("greet", &args).await.unwrap();
-            set_greet_msg.set(new_msg);
-        });
-    };
-
     view! {
         <main class="container">
             <h1>"Welcome to Tauri + Leptos"</h1>
 
             <div class="row">
                 <a href="https://tauri.app" target="_blank">
-                    <img src="public/tauri.svg" class="logo tauri" alt="Tauri logo"/>
+                    <img src="public/tauri.svg" class="logo tauri" alt="Tauri logo" />
                 </a>
                 <a href="https://docs.rs/leptos/" target="_blank">
-                    <img src="public/leptos.svg" class="logo leptos" alt="Leptos logo"/>
+                    <img src="public/leptos.svg" class="logo leptos" alt="Leptos logo" />
                 </a>
             </div>
             <p>"Click on the Tauri and Leptos logos to learn more."</p>
 
-            <form class="row" on:submit=greet>
-                <input
-                    id="greet-input"
-                    placeholder="Enter a name..."
-                    on:input=update_name
-                />
-                <button type="submit">"Greet"</button>
-            </form>
-            <p>{ move || greet_msg.get() }</p>
+            <section>
+                <h2>"Greet"</h2>
+                <Greet />
+            </section>
+
+            <section>
+                <h2>"TestEvent"</h2>
+                <TestEvent />
+            </section>
         </main>
     }
 }
