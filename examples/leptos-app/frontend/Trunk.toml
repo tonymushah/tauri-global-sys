@@ -15,4 +15,4 @@ open = false
 ws_protocol = "ws"
 
 [watch]
-watch = ["../../../crates/sys/src", "./src/**/*.module.scss", "./src/**/*.module.css"]
+watch = ["../../../crates/sys/src", "./src/"]
