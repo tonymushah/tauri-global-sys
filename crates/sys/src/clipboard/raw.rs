@@ -13,5 +13,5 @@ extern "C" {
     ///
     /// Since v1.0.0
     #[wasm_bindgen(catch)]
-    pub async fn writeText(text: String) -> Result<(), JsValue>;
+    pub async fn writeText(text: &str) -> Result<(), JsValue>;
 }

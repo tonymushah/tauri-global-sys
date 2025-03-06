@@ -21,7 +21,7 @@ pub mod raw;
 /// Writes plain text to the clipboard.
 ///
 /// Since v1.0.0
-pub async fn write_text(text: String) -> crate::Result<()> {
+pub async fn write_text(text: &str) -> crate::Result<()> {
     raw::writeText(text).await?;
     Ok(())
 }
