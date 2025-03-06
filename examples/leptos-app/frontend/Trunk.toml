@@ -12,6 +12,7 @@ dist = "../dist"
 [serve]
 port = 1420
 open = false
+ws_protocol = "ws"
 
 [watch]
 watch = ["../../../crates/sys/src", "./src/**/*.module.scss", "./src/**/*.module.css"]
