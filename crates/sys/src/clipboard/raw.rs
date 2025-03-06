@@ -2,9 +2,16 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(js_namespace = ["window","__TAURI__","clipboard"])]
 extern "C" {
-    /// Parse the arguments provided to the current process and get the matches using the configuration defined [tauri.cli](https://tauri.app/v1/api/config/#tauriconfig.cli) in tauri.conf.json
+
+    /// Gets the clipboard content as plain text.
     ///
-    /// Since: 1.0.0
+    /// Since v1.0.0
     #[wasm_bindgen(catch)]
-    pub async fn getMatches() -> Result<JsValue, JsValue>;
+    pub async fn readText() -> Result<JsValue, JsValue>;
+
+    /// Writes plain text to the clipboard.
+    ///
+    /// Since v1.0.0
+    #[wasm_bindgen(catch)]
+    pub async fn writeText(text: String) -> Result<(), JsValue>;
 }
