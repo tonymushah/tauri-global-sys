@@ -32,7 +32,11 @@ pub fn use_stream_aborts(
         }
     };
     if auto_clean_up {
-        on_cleanup(abort.clone());
+        let abort = abort.clone();
+        on_cleanup(move || {
+            log::trace!("Event cleanup");
+            abort()
+        });
     }
     let push_handle = {
         let aborts = aborts.clone();
