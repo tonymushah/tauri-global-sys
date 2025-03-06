@@ -3850,6 +3850,7 @@ dependencies = [
  "log",
  "serde",
  "serde-wasm-bindgen",
+ "serde_json",
  "thiserror 2.0.11",
  "wasm-bindgen",
  "wasm-bindgen-futures",
