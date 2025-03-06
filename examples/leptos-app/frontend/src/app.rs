@@ -4,7 +4,8 @@ pub mod components;
 pub mod hooks;
 
 use components::{
-    app_module::AppModule, cli_matches_test::TestCliMatches, greet::Greet, test_event::TestEvent,
+    app_module::AppModule, cli_matches_test::TestCliMatches, clip_board::ClipBoard, greet::Greet,
+    test_event::TestEvent,
 };
 use leptos::prelude::*;
 
@@ -61,6 +62,10 @@ pub fn App() -> impl IntoView {
 
             <FeatureDion title="App modules".into() flex_col=true>
                 <AppModule />
+            </FeatureDion>
+
+            <FeatureDion title="Clipboard".into() flex_col=true>
+                <ClipBoard />
             </FeatureDion>
         </main>
     }
