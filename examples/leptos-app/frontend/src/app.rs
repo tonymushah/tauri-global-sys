@@ -3,8 +3,33 @@ stylance::import_crate_style!(styles2, "src/app.module.scss");
 pub mod components;
 pub mod hooks;
 
-use components::{cli_matches_test::TestCliMatches, greet::Greet, test_event::TestEvent};
+use components::{
+    app_module::AppModule, cli_matches_test::TestCliMatches, greet::Greet, test_event::TestEvent,
+};
 use leptos::prelude::*;
+
+#[component]
+fn FeatureDion(
+    title: String,
+    #[prop(optional)] default_toggled: bool,
+    children: ChildrenFn,
+    #[prop(optional)] flex_col: bool,
+) -> impl IntoView {
+    let (toggled, set_toggled) = signal(default_toggled);
+    let children = StoredValue::new(children);
+
+    view! {
+        <section class=(styles2::flex_col, flex_col)>
+            <h2 on:click=move |_| {
+                set_toggled
+                    .update(|toggled| {
+                        *toggled = !*toggled;
+                    });
+            }>{title}</h2>
+            <Show when=move || toggled.get()>{children.read_value()()}</Show>
+        </section>
+    }
+}
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -22,19 +47,21 @@ pub fn App() -> impl IntoView {
             </div>
             <p>"Click on the Tauri and Leptos logos to learn more."</p>
 
-            <section>
-                <h2>"Greet"</h2>
+            <FeatureDion title="Invoke Greet".into()>
                 <Greet />
-            </section>
+            </FeatureDion>
 
-            <section class=styles2::flex_col>
-                <h2>"TestEvent"</h2>
+            <FeatureDion title="TestEvent".into() flex_col=true>
                 <TestEvent />
-            </section>
-            <section class=styles2::flex_col>
-                <h2>"Test cli matches"</h2>
+            </FeatureDion>
+
+            <FeatureDion title="Test cli matches".into() flex_col=true>
                 <TestCliMatches />
-            </section>
+            </FeatureDion>
+
+            <FeatureDion title="App modules".into() flex_col=true>
+                <AppModule />
+            </FeatureDion>
         </main>
     }
 }
