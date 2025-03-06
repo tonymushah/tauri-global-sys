@@ -1,5 +1,10 @@
 trunk-version = "^0.21.7"
 
+[[hooks]]
+stage = "pre_build"
+command = "stylance"
+command_arguments = ["."]
+
 [build]
 target = "./index.html"
 dist = "../dist"
@@ -9,4 +14,4 @@ port = 1420
 open = false
 
 [watch]
-watch = "../../../crates/sys/"
+watch = ["../../../crates/sys/src", "./src/**/*.module.scss", "./src/**/*.module.css"]

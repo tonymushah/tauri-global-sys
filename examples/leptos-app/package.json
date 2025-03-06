@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "trunk serve --config frontend/Trunk.toml",
-    "build": "trunk build --config frontend/Trunk.toml"
+    "build": "trunk build --config frontend/Trunk.toml",
+    "stylance": "stylance ./frontend",
+    "stylance:watch": "stylance --watch ./frontend"
   },
   "keywords": [],
   "author": "",

@@ -1,3 +1,5 @@
+stylance::import_crate_style!(styles2, "src/app.module.scss");
+
 pub mod components;
 pub mod hooks;
 
@@ -25,7 +27,7 @@ pub fn App() -> impl IntoView {
                 <Greet />
             </section>
 
-            <section>
+            <section class=styles2::test_event>
                 <h2>"TestEvent"</h2>
                 <TestEvent />
             </section>

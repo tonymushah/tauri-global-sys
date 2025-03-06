@@ -4,6 +4,9 @@
   border-style: solid;
   border-width: 3px;
   box-shadow: var(--border-color, #121212) 0px 3px 0px;
+  width: fit-content;
+  padding: 10px 13px;
+  align-self: center;
 }
 
 .button {
