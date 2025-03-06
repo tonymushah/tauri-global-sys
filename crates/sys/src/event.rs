@@ -35,7 +35,7 @@ pub struct Listen<T> {
 impl<T> Drop for Listen<T> {
     fn drop(&mut self) {
         #[cfg(feature = "log")]
-        log::debug!("Calling unlisten for event listener stream");
+        log::trace!("Calling unlisten for event listener stream");
         let _res = self.unlisten.call0(&JsValue::undefined());
         #[cfg(feature = "log")]
         {
@@ -95,7 +95,7 @@ pub struct Once<T> {
 impl<T> Drop for Once<T> {
     fn drop(&mut self) {
         #[cfg(feature = "log")]
-        log::debug!("Calling unlisten for once event");
+        log::trace!("Calling unlisten for once event");
         let _res = self.unlisten.call0(&JsValue::undefined());
         #[cfg(feature = "log")]
         {
