@@ -1,0 +1,21 @@
+.cli_matches_container {
+  border-color: var(--border-color, #121212);
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 3px;
+  box-shadow: var(--border-color, #121212) 0px 3px 0px;
+  width: fit-content;
+  padding: 10px 13px;
+  align-self: center;
+}
+
+.error {
+  border-color: var(--border-color, red);
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 3px;
+  box-shadow: var(--border-color, red) 0px 3px 0px;
+  width: fit-content;
+  padding: 10px 13px;
+  align-self: center;
+}

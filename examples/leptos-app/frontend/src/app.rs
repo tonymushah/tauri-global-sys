@@ -3,7 +3,7 @@ stylance::import_crate_style!(styles2, "src/app.module.scss");
 pub mod components;
 pub mod hooks;
 
-use components::{greet::Greet, test_event::TestEvent};
+use components::{cli_matches_test::TestCliMatches, greet::Greet, test_event::TestEvent};
 use leptos::prelude::*;
 
 #[component]
@@ -27,9 +27,13 @@ pub fn App() -> impl IntoView {
                 <Greet />
             </section>
 
-            <section class=styles2::test_event>
+            <section class=styles2::flex_col>
                 <h2>"TestEvent"</h2>
                 <TestEvent />
+            </section>
+            <section class=styles2::flex_col>
+                <h2>"Test cli matches"</h2>
+                <TestCliMatches />
             </section>
         </main>
     }
