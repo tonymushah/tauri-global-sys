@@ -16,6 +16,8 @@ pub enum Error {
     Invoke(JsValue),
     #[error(transparent)]
     FuturesOneshotCanceled(#[from] futures::channel::oneshot::Canceled),
+    #[error("{}", js_sys::Error::message(.0))]
+    Js(js_sys::Error),
 }
 
 impl Error {
@@ -48,7 +50,10 @@ impl From<JsValue> for Error {
     fn from(value: JsValue) -> Self {
         match value.dyn_into::<JsString>() {
             Ok(message) => Self::tauri_js_string(message),
-            Err(other) => Self::Invoke(other),
+            Err(other) => match other.dyn_into::<js_sys::Error>() {
+                Ok(error) => Self::Js(error),
+                Err(other) => Self::Invoke(other),
+            },
         }
     }
 }
