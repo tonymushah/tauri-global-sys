@@ -12,12 +12,28 @@
     "version": "0.1.0"
   },
   "tauri": {
-    "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
-        "open": true
+    "cli": {
+      "description": "tauri-global-sys test app with leptos",
+      "args": [{
+        "name": "some",
+        "takesValue": true,
+        "multipleOccurrences": true,
+        "short": "s"
+      }],
+      "subcommands": {
+        "decouple": {
+          "args": [{
+            "name": "from",
+            "takesValue": true,
+            "multipleOccurrences": true
+          }, {
+            "name": "not"
+          }]
+        }
       }
+    },
+    "allowlist": {
+      "all": true
     },
     "windows": [
       {
