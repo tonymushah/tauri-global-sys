@@ -1,5 +1,7 @@
 //! Read and write to the system clipboard.
+//!
 //! This module only works if [`build.withGlobalTauri`](https://tauri.app/v1/api/config/#buildconfig.withglobaltauri) in `tauri.conf.json` is set to true.
+//!
 //! The APIs must be added to [`tauri.allowlist.clipboard`](https://tauri.app/v1/api/config/#allowlistconfig.clipboard) in tauri.conf.json:
 //!
 //! ```json
