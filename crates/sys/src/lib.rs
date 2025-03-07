@@ -7,6 +7,9 @@ pub mod cli;
 /// The equivalent of the [`window.__TAURI__.clipboard`](https://v1.tauri.app/v1/api/js/clipboard) module.
 ///
 pub mod clipboard;
+/// The equivalent of the [`window.__TAURI__.dialog`](https://v1.tauri.app/v1/api/js/dialog) module.
+///
+pub mod dialog;
 pub mod error;
 /// The equivalent of the [`window.__TAURI__.event`](https://v1.tauri.app/v1/api/js/event) module.
 ///
