@@ -16,7 +16,8 @@ pub enum ArgMatchValue {
 /// Rust equivalent struct for [`ArgMatch`](https://v1.tauri.app/v1/api/js/cli#argmatch)
 #[derive(Debug, Deserialize, Clone, Serialize)]
 pub struct ArgMatch {
-    pub occurences: usize,
+    #[serde(default)]
+    pub occurrences: usize,
     pub value: Option<ArgMatchValue>,
 }
 
