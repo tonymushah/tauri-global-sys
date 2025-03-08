@@ -1,3 +1,5 @@
+stylance::import_crate_style!(styles, "src/app/components/dialog.module.scss");
+
 use leptos::prelude::*;
 use tauri_global_sys::dialog::{ask, ConfirmDialogOptions};
 use wasm_bindgen::JsCast;
@@ -33,15 +35,18 @@ fn Ask() -> impl IntoView {
                 _ => None::<()>.into_any(),
             }
         }}
-        <form on:submit=move |ev| {
-            ev.prevent_default();
-            let form = ev
-                .target()
-                .and_then(|t| t.dyn_into::<HtmlFormElement>().ok())
-                .expect("Should be a form element");
-            let form_data = FormData::new_with_form(&form).expect("Cannot make a form data");
-            action.dispatch_local(form_data);
-        }>
+        <form
+            on:submit=move |ev| {
+                ev.prevent_default();
+                let form = ev
+                    .target()
+                    .and_then(|t| t.dyn_into::<HtmlFormElement>().ok())
+                    .expect("Should be a form element");
+                let form_data = FormData::new_with_form(&form).expect("Cannot make a form data");
+                action.dispatch_local(form_data);
+            }
+            class=styles::form
+        >
             <div>
                 <input name="message" placeholder="Ask dialog message" type="text" />
             </div>
@@ -61,7 +66,9 @@ fn Ask() -> impl IntoView {
                     <option value="error">"Error"</option>
                 </select>
             </div>
-            <button type="submit">"Ask..."</button>
+            <div>
+                <button type="submit">"Ask..."</button>
+            </div>
         </form>
     }
 }
