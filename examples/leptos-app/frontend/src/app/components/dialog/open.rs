@@ -37,7 +37,7 @@ pub fn Open() -> impl IntoView {
                 Some(Ok(data)) => {
                     view! {
                         <div>
-                            {if !data.is_empty() {
+                            {if data.is_empty() {
                                 view! { <i>"No file selected"</i> }.into_any()
                             } else {
                                 view! {
