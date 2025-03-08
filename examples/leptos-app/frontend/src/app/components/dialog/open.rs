@@ -1,6 +1,6 @@
 use super::styles;
 use leptos::prelude::*;
-use tauri_global_sys::dialog::{open, OpenDialogOptions};
+use tauri_global_sys::dialog::{open, DialogFilter, OpenDialogOptions};
 use wasm_bindgen::JsCast;
 use web_sys::{FormData, HtmlFormElement};
 
@@ -18,8 +18,29 @@ pub fn Open() -> impl IntoView {
                     .get("filterss_")
                     .as_string()
                     .filter(|e| !e.is_empty())
-                    .map(|e| e.split(';').map(String::from).collect::<Vec<_>>());
+                    .map(|e| {
+                        e.split(';')
+                            .flat_map(|split| {
+                                Some(DialogFilter {
+                                    extensions: split
+                                        .split_once(':')
+                                        .map(|x| x.1)
+                                        .filter(|s| !s.is_empty())
+                                        .map(|e| e.split(",").map(String::from).collect())
+                                        .unwrap_or_default(),
+                                    name: split.split(':').next().map(String::from)?,
+                                })
+                            })
+                            .collect::<Vec<_>>()
+                    });
+                opt.directory =
+                    Some(form_data.get("_directory").as_string() == Some("on".to_string()));
+                opt.recursive =
+                    Some(form_data.get("_recursive").as_string() == Some("on".to_string()));
+                opt.multiple =
+                    Some(form_data.get("_multiple").as_string() == Some("on".to_string()))
             }
+            log::debug!("{:#?}", options);
             let res = open(options)
                 .await
                 .map_err(|e| anyhow::Error::msg(e.to_string()))?
@@ -78,7 +99,7 @@ pub fn Open() -> impl IntoView {
                 <input name="defaultPath" placeholder="Default Path" type="text" />
             </div>
             <div>
-                <label>"Directory?" <input name="directory" type="checkbox" /></label>
+                <label>"Directory?" <input name="_directory" type="checkbox" /></label>
             </div>
             <div>
                 <input
@@ -88,10 +109,10 @@ pub fn Open() -> impl IntoView {
                 />
             </div>
             <div>
-                <label>"Recursive?" <input name="recursive" type="checkbox" /></label>
+                <label>"Recursive?" <input name="_recursive" type="checkbox" /></label>
             </div>
             <div>
-                <label>"Multiple?" <input name="multiple" type="checkbox" /></label>
+                <label>"Multiple?" <input name="_multiple" type="checkbox" /></label>
             </div>
             <div>
                 <button type="submit">"Open..."</button>
