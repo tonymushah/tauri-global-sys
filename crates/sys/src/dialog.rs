@@ -42,10 +42,11 @@ fn option_string_data(data: &Option<String>) -> bool {
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[serde(rename_all = "camelCase", untagged)]
+#[serde(untagged)]
 pub enum ConfirmDialogOptions {
     Title(String),
     /// Ref: https://v1.tauri.app/v1/api/js/dialog/#confirmdialogoptions
+    #[serde(rename_all = "camelCase")]
     Options {
         /// The label of the cancel button.
         #[serde(skip_serializing_if = "option_string_data")]
@@ -88,10 +89,11 @@ pub struct DialogFilter {
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[serde(rename_all = "camelCase", untagged)]
+#[serde(untagged)]
 pub enum MessageDialogOptions {
     Title(String),
     /// Ref: https://v1.tauri.app/v1/api/js/dialog/#messagedialogoptions
+    #[serde(rename_all = "camelCase")]
     Options {
         /// The label of the confirm button.
         #[serde(skip_serializing_if = "option_string_data")]
