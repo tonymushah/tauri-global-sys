@@ -42,15 +42,25 @@ fn Ask() -> impl IntoView {
             let form_data = FormData::new_with_form(&form).expect("Cannot make a form data");
             action.dispatch_local(form_data);
         }>
-            <input name="message" placeholder="Ask dialog message" type="text" />
-            <input name="cancelLabel" placeholder="Cancel Label" type="text" />
-            <input name="okLabel" placeholder="Ok Label" type="text" />
-            <input name="title" placeholder="title" type="text" />
-            <select name="type" placeholder="Dialog type">
-                <option value="info">"Info"</option>
-                <option value="warning">"Warning"</option>
-                <option value="error">"Error"</option>
-            </select>
+            <div>
+                <input name="message" placeholder="Ask dialog message" type="text" />
+            </div>
+            <div>
+                <input name="cancelLabel" placeholder="Cancel Label" type="text" />
+            </div>
+            <div>
+                <input name="okLabel" placeholder="Ok Label" type="text" />
+            </div>
+            <div>
+                <input name="title" placeholder="Title" type="text" />
+            </div>
+            <div>
+                <select name="type" placeholder="Dialog type">
+                    <option value="info">"Info"</option>
+                    <option value="warning">"Warning"</option>
+                    <option value="error">"Error"</option>
+                </select>
+            </div>
             <button type="submit">"Ask..."</button>
         </form>
     }
