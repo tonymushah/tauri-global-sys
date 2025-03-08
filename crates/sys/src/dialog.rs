@@ -34,6 +34,13 @@ pub enum DialogType {
     Error,
 }
 
+fn option_string_data(data: &Option<String>) -> bool {
+    match data {
+        Some(str) => str.is_empty(),
+        None => true,
+    }
+}
+
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[serde(rename_all = "camelCase", untagged)]
 pub enum ConfirmDialogOptions {
@@ -41,10 +48,13 @@ pub enum ConfirmDialogOptions {
     /// Ref: https://v1.tauri.app/v1/api/js/dialog/#confirmdialogoptions
     Options {
         /// The label of the cancel button.
+        #[serde(skip_serializing_if = "option_string_data")]
         cancel_label: Option<String>,
         /// The label of the confirm button.
+        #[serde(skip_serializing_if = "option_string_data")]
         ok_label: Option<String>,
         /// The title of the dialog. Defaults to the app name.
+        #[serde(skip_serializing_if = "option_string_data")]
         title: Option<String>,
         /// The type of the dialog. Defaults to info.
         _type: Option<DialogType>,
@@ -84,8 +94,10 @@ pub enum MessageDialogOptions {
     /// Ref: https://v1.tauri.app/v1/api/js/dialog/#messagedialogoptions
     Options {
         /// The label of the confirm button.
+        #[serde(skip_serializing_if = "option_string_data")]
         ok_label: Option<String>,
         /// The title of the dialog. Defaults to the app name.
+        #[serde(skip_serializing_if = "option_string_data")]
         title: Option<String>,
         /// The type of the dialog. Defaults to info.
         _type: Option<DialogType>,
@@ -141,6 +153,7 @@ impl From<MessageDialogOptions> for ConfirmDialogOptions {
 #[serde(rename_all = "camelCase")]
 pub struct OpenDialogOptions {
     /// Initial directory or file path.
+    #[serde(skip_serializing_if = "option_string_data")]
     pub default_path: Option<String>,
     /// Whether the dialog is a directory selection or not.
     pub directory: Option<bool>,
@@ -151,6 +164,7 @@ pub struct OpenDialogOptions {
     /// If [`Self::directory`] is true, indicates that it will be read recursively later. Defines whether subdirectories will be allowed on the scope or not.
     pub recursive: Option<bool>,
     /// The title of the dialog window.
+    #[serde(skip_serializing_if = "option_string_data")]
     pub title: Option<String>,
 }
 
@@ -161,10 +175,12 @@ pub struct OpenDialogOptions {
 #[serde(rename_all = "camelCase")]
 pub struct SaveDialogOptions {
     /// Initial directory or file path. If it's a directory path, the dialog interface will change to that folder. If it's not an existing directory, the file name will be set to the dialog's file name input and the dialog will be set to the parent folder.
+    #[serde(skip_serializing_if = "option_string_data")]
     pub default_path: Option<String>,
     /// The filters of the dialog.
     pub filters: Option<Vec<DialogType>>,
     /// The title of the dialog window.
+    #[serde(skip_serializing_if = "option_string_data")]
     pub title: Option<String>,
 }
 
