@@ -17,6 +17,7 @@ pub fn Open() -> impl IntoView {
                 opt.filters = form_data
                     .get("filterss_")
                     .as_string()
+                    .filter(|e| !e.is_empty())
                     .map(|e| e.split(';').map(String::from).collect::<Vec<_>>());
             }
             let res = open(options)
