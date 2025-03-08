@@ -28,9 +28,10 @@ fn Ask() -> impl IntoView {
         }
     });
     let action_value = action.value_local();
+    let action_status = action.pending();
     view! {
         {move || {
-            match action_value.read().as_ref() {
+            match action_value.read().as_ref().filter(|_| action_status.read() == false) {
                 Some(Err(err)) => view! { <p style:color="red">{format!("{err}")}</p> }.into_any(),
                 Some(Ok(true)) => {
                     view! { <p style:color="green">"The user agreed :)"</p> }.into_any()
