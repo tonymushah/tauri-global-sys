@@ -9,12 +9,12 @@ use crate::app::utils::deser_form_data::deser_form_data;
 
 #[component]
 fn Ask() -> impl IntoView {
-    let action = Action::<_, anyhow::Result<()>, _>::new_local(|form_data: &FormData| {
+    let action = Action::<_, anyhow::Result<_>, _>::new_local(|form_data: &FormData| {
         let form_data = form_data.clone();
         async move {
             let options: Option<ConfirmDialogOptions> =
                 deser_form_data(&form_data).unwrap_or_default();
-            ask(
+            let is_confirmed = ask(
                 &form_data
                     .get("message")
                     .as_string()
@@ -24,7 +24,7 @@ fn Ask() -> impl IntoView {
             )
             .await
             .map_err(|e| anyhow::Error::msg(e.to_string()))?;
-            Ok(())
+            Ok(is_confirmed)
         }
     });
     let action_value = action.value_local();
@@ -32,6 +32,12 @@ fn Ask() -> impl IntoView {
         {move || {
             match action_value.read().as_ref() {
                 Some(Err(err)) => view! { <p style:color="red">{format!("{err}")}</p> }.into_any(),
+                Some(Ok(true)) => {
+                    view! { <p style:color="green">"The user agreed :)"</p> }.into_any()
+                }
+                Some(Ok(false)) => {
+                    view! { <p style:color="#d56">"The user denied :("</p> }.into_any()
+                }
                 _ => None::<()>.into_any(),
             }
         }}
@@ -76,7 +82,7 @@ fn Ask() -> impl IntoView {
 #[component]
 pub fn Dialog() -> impl IntoView {
     view! {
-        <div>
+        <div class=styles::top_section>
             <section>
                 <h3>"Ask"</h3>
                 <Ask />
