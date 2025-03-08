@@ -51,6 +51,7 @@ fn Ask() -> impl IntoView {
                 <option value="warning">"Warning"</option>
                 <option value="error">"Error"</option>
             </select>
+            <button type="submit">"Ask..."</button>
         </form>
     }
 }
