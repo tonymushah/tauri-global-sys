@@ -1,10 +1,13 @@
 stylance::import_crate_style!(pub(self) styles, "src/app/components/dialog.module.scss");
+use leptos::prelude::*;
+
 mod ask;
 mod confirm;
+mod message;
 
 use ask::Ask;
 use confirm::Confirm;
-use leptos::prelude::*;
+use message::Message;
 
 #[component]
 pub fn Dialog() -> impl IntoView {
@@ -17,6 +20,10 @@ pub fn Dialog() -> impl IntoView {
             <section>
                 <h3>"Confirm"</h3>
                 <Confirm />
+            </section>
+            <section>
+                <h3>"Message"</h3>
+                <Message />
             </section>
         </div>
     }
