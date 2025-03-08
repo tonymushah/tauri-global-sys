@@ -9,6 +9,7 @@ mod open;
 use ask::Ask;
 use confirm::Confirm;
 use message::Message;
+use open::Open;
 
 #[component]
 pub fn Dialog() -> impl IntoView {
@@ -25,6 +26,10 @@ pub fn Dialog() -> impl IntoView {
             <section>
                 <h3>"Message"</h3>
                 <Message />
+            </section>
+            <section>
+                <h3>"Open"</h3>
+                <Open />
             </section>
         </div>
     }
