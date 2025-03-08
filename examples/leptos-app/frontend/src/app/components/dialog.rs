@@ -4,6 +4,7 @@ use leptos::prelude::*;
 mod ask;
 mod confirm;
 mod message;
+mod open;
 
 use ask::Ask;
 use confirm::Confirm;
