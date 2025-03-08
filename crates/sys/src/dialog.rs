@@ -160,7 +160,7 @@ pub struct OpenDialogOptions {
     /// Whether the dialog is a directory selection or not.
     pub directory: Option<bool>,
     /// The filters of the dialog.
-    pub filters: Option<Vec<String>>,
+    pub filters: Option<Vec<DialogFilter>>,
     /// Whether the dialog allows multiple selection or not.
     pub multiple: Option<bool>,
     /// If [`Self::directory`] is true, indicates that it will be read recursively later. Defines whether subdirectories will be allowed on the scope or not.
@@ -180,7 +180,7 @@ pub struct SaveDialogOptions {
     #[serde(skip_serializing_if = "option_string_data")]
     pub default_path: Option<String>,
     /// The filters of the dialog.
-    pub filters: Option<Vec<String>>,
+    pub filters: Option<Vec<DialogFilter>>,
     /// The title of the dialog window.
     #[serde(skip_serializing_if = "option_string_data")]
     pub title: Option<String>,
