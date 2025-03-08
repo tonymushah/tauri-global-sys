@@ -5,11 +5,13 @@ mod ask;
 mod confirm;
 mod message;
 mod open;
+mod save;
 
 use ask::Ask;
 use confirm::Confirm;
 use message::Message;
 use open::Open;
+use save::Save;
 
 #[component]
 pub fn Dialog() -> impl IntoView {
@@ -30,6 +32,10 @@ pub fn Dialog() -> impl IntoView {
             <section>
                 <h3>"Open"</h3>
                 <Open />
+            </section>
+            <section>
+                <h3>"Save"</h3>
+                <Save />
             </section>
         </div>
     }
