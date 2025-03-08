@@ -19,6 +19,7 @@ serde_json.workspace = true
 log.workspace = true
 futures.workspace = true
 web-sys.workspace = true
+anyhow.workspace = true
 
 [package.metadata.stylance]
 output_dir = "./"

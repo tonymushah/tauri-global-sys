@@ -2,10 +2,11 @@ stylance::import_crate_style!(styles2, "src/app.module.scss");
 
 pub mod components;
 pub mod hooks;
+pub mod utils;
 
 use components::{
-    app_module::AppModule, cli_matches_test::TestCliMatches, clip_board::ClipBoard, greet::Greet,
-    test_event::TestEvent,
+    app_module::AppModule, cli_matches_test::TestCliMatches, clip_board::ClipBoard, dialog::Dialog,
+    greet::Greet, test_event::TestEvent,
 };
 use leptos::prelude::*;
 
@@ -33,6 +34,35 @@ fn FeatureDion(
 }
 
 #[component]
+fn Features() -> impl IntoView {
+    view! {
+        <FeatureDion title="Invoke Greet".into()>
+            <Greet />
+        </FeatureDion>
+
+        <FeatureDion title="TestEvent".into() flex_col=true>
+            <TestEvent />
+        </FeatureDion>
+
+        <FeatureDion title="Test cli matches".into() flex_col=true>
+            <TestCliMatches />
+        </FeatureDion>
+
+        <FeatureDion title="App modules".into() flex_col=true>
+            <AppModule />
+        </FeatureDion>
+
+        <FeatureDion title="Clipboard".into() flex_col=true>
+            <ClipBoard />
+        </FeatureDion>
+
+        <FeatureDion title="Dialog".into() flex_col=true>
+            <Dialog />
+        </FeatureDion>
+    }
+}
+
+#[component]
 pub fn App() -> impl IntoView {
     view! {
         <main class="container">
@@ -48,25 +78,7 @@ pub fn App() -> impl IntoView {
             </div>
             <p>"Click on the Tauri and Leptos logos to learn more."</p>
 
-            <FeatureDion title="Invoke Greet".into()>
-                <Greet />
-            </FeatureDion>
-
-            <FeatureDion title="TestEvent".into() flex_col=true>
-                <TestEvent />
-            </FeatureDion>
-
-            <FeatureDion title="Test cli matches".into() flex_col=true>
-                <TestCliMatches />
-            </FeatureDion>
-
-            <FeatureDion title="App modules".into() flex_col=true>
-                <AppModule />
-            </FeatureDion>
-
-            <FeatureDion title="Clipboard".into() flex_col=true>
-                <ClipBoard />
-            </FeatureDion>
+            <Features />
         </main>
     }
 }
