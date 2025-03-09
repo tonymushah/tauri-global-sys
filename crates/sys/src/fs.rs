@@ -51,6 +51,7 @@
 //! Trying to execute any API with a URL not configured on the scope results in a promise rejection due to denied access.
 //!
 //! Note that this scope applies to all APIs on this module.
+use serde::{Deserialize, Serialize};
 use serde_repr::{Deserialize_repr, Serialize_repr};
 
 #[derive(
@@ -83,6 +84,60 @@ pub enum BaseDirectory {
     AppLocalData,
     AppCache,
     AppLog,
+}
+
+/// Struct interface to [`FileEntry`](https://v1.tauri.app/v1/api/js/fs#fileentry)
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "camelCase")]
+pub struct FileEntry {
+    /// Children of this entry if it's a directory; [`None`] otherwise
+    pub children: Option<Vec<Self>>,
+    /// Name of the directory/file can be [`None`] if the path terminates with ..
+    pub name: Option<String>,
+    pub path: String,
+}
+
+/// Struct interface to [`FsBinaryFileOption`](https://v1.tauri.app/v1/api/js/fs#fsbinaryfileoption)
+///
+/// Options object used to write a binary data to a file.
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "camelCase")]
+pub struct FsBinaryFileOption {
+    pub contents: Vec<u8>,
+    pub path: String,
+}
+
+/// Struct interface to [`FsDirOptions`](https://v1.tauri.app/v1/api/js/fs#fsdiroptions)
+///
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "camelCase")]
+pub struct FsDirOptions {
+    pub dir: Option<BaseDirectory>,
+    pub recursive: Option<bool>,
+}
+
+/// Struct interface to [`FsOptions`](https://v1.tauri.app/v1/api/js/fs#fsoptions)
+///
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "camelCase")]
+pub struct FsOptions {
+    /// Whether the content should overwrite the content of the file or append to it.
+    ///
+    /// Since Tauri 1.5.0
+    pub append: Option<bool>,
+    pub dir: Option<BaseDirectory>,
+}
+
+/// Struct interface to [`FsTextFileOption`](https://v1.tauri.app/v1/api/js/fs#fstextfileoption)
+///
+/// Options object used to write a UTF-8 string to a file.
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "camelCase")]
+pub struct FsTextFileOption {
+    /// The UTF-8 string to write to the file.
+    pub contents: String,
+    /// Path to the file to write.
+    pub path: String,
 }
 
 #[cfg(test)]
