@@ -150,7 +150,8 @@ pub async fn copy_file(
     destination: &str,
     options: Option<FsOptions>,
 ) -> crate::Result<()> {
-    todo!()
+    raw::copyFile(source, destination, serde_wasm_bindgen::to_value(&options)?).await?;
+    Ok(())
 }
 
 /// Creates a directory.
@@ -159,7 +160,8 @@ pub async fn copy_file(
 ///
 /// Ref: https://v1.tauri.app/v1/api/js/fs#createdir
 pub async fn create_dir(dir: &str, options: Option<FsDirOptions>) -> crate::Result<()> {
-    todo!()
+    raw::createDir(dir, serde_wasm_bindgen::to_value(&options)?).await?;
+    Ok(())
 }
 
 /// Check if a path exists.
@@ -168,28 +170,34 @@ pub async fn create_dir(dir: &str, options: Option<FsDirOptions>) -> crate::Resu
 ///
 /// Since: 1.1.0
 pub async fn exists(path: &str, options: Option<FsOptions>) -> crate::Result<bool> {
-    todo!()
+    Ok(serde_wasm_bindgen::from_value(
+        raw::exists(path, serde_wasm_bindgen::to_value(&options)?).await?,
+    )?)
 }
 
 /// Reads a file as byte array.
 ///
 /// Ref: https://v1.tauri.app/v1/api/js/fs#readbinaryfile
 pub async fn read_binary_file(path: &str, options: Option<FsOptions>) -> crate::Result<Vec<u8>> {
-    todo!()
+    let res = raw::readBinaryFile(path, serde_wasm_bindgen::to_value(&options)?).await?;
+    Ok(res.to_vec())
 }
 
 /// List directory files.
 ///
 /// Ref: https://v1.tauri.app/v1/api/js/fs#readdir
 pub async fn read_dir(dir: &str, options: Option<FsDirOptions>) -> crate::Result<Vec<FileEntry>> {
-    todo!()
+    Ok(serde_wasm_bindgen::from_value(
+        raw::readDir(dir, serde_wasm_bindgen::to_value(&options)?).await?,
+    )?)
 }
 
 /// Reads a file as an UTF-8 encoded string.
 ///
 /// Ref: https://v1.tauri.app/v1/api/js/fs#readtextfile
 pub async fn read_text_file(file_path: &str, options: Option<FsOptions>) -> crate::Result<String> {
-    todo!()
+    let res = raw::readTextFile(file_path, serde_wasm_bindgen::to_value(&options)?).await?;
+    Ok(serde_wasm_bindgen::from_value(res)?)
 }
 
 /// Removes a directory.
@@ -198,14 +206,16 @@ pub async fn read_text_file(file_path: &str, options: Option<FsOptions>) -> crat
 ///
 /// Ref: https://v1.tauri.app/v1/api/js/fs#removedir
 pub async fn remove_dir(dir: &str, options: Option<FsDirOptions>) -> crate::Result<()> {
-    todo!()
+    raw::removeDir(dir, serde_wasm_bindgen::to_value(&options)?).await?;
+    Ok(())
 }
 
 /// Removes a file.
 ///
 /// Ref: https://v1.tauri.app/v1/api/js/fs#removefile
 pub async fn remove_file(file: &str, options: Option<FsOptions>) -> crate::Result<()> {
-    todo!()
+    raw::removeFile(file, serde_wasm_bindgen::to_value(&options)?).await?;
+    Ok(())
 }
 
 /// Renames a file.
@@ -216,7 +226,8 @@ pub async fn rename_file(
     new_path: &str,
     options: Option<FsOptions>,
 ) -> crate::Result<()> {
-    todo!()
+    raw::renameFile(old_path, new_path, serde_wasm_bindgen::to_value(&options)?).await?;
+    Ok(())
 }
 
 /// Writes a byte array content to a file.
@@ -227,7 +238,13 @@ pub async fn write_binary_file(
     contents: Vec<u8>,
     options: Option<FsOptions>,
 ) -> crate::Result<()> {
-    todo!()
+    raw::writeBinaryFile(
+        path,
+        serde_wasm_bindgen::to_value(&contents)?,
+        serde_wasm_bindgen::to_value(&options)?,
+    )
+    .await?;
+    Ok(())
 }
 
 /// Pretty much the same as [`write_binary_file`] but uses [`FsBinaryFileOption`] instead.
@@ -237,7 +254,12 @@ pub async fn write_binary_file2(
     file: FsBinaryFileOption,
     options: Option<FsOptions>,
 ) -> crate::Result<()> {
-    todo!()
+    raw::writeBinaryFile2(
+        serde_wasm_bindgen::to_value(&file)?,
+        serde_wasm_bindgen::to_value(&options)?,
+    )
+    .await?;
+    Ok(())
 }
 
 /// Writes a UTF-8 text file.
@@ -248,7 +270,8 @@ pub async fn write_text_file(
     contents: &str,
     options: Option<FsOptions>,
 ) -> crate::Result<()> {
-    todo!()
+    raw::writeTextFile(path, contents, serde_wasm_bindgen::to_value(&options)?).await?;
+    Ok(())
 }
 
 /// Pretty much the same as [`write_text_file`] but uses [`FsTextFileOption`] instead.
@@ -258,7 +281,12 @@ pub async fn write_text_file2(
     file: FsTextFileOption,
     options: Option<FsOptions>,
 ) -> crate::Result<()> {
-    todo!()
+    raw::writeTextFile2(
+        serde_wasm_bindgen::to_value(&file)?,
+        serde_wasm_bindgen::to_value(&options)?,
+    )
+    .await?;
+    Ok(())
 }
 
 #[cfg(test)]
