@@ -6,7 +6,7 @@ pub mod utils;
 
 use components::{
     app_module::AppModule, cli_matches_test::TestCliMatches, clip_board::ClipBoard, dialog::Dialog,
-    greet::Greet, test_event::TestEvent,
+    fs::Fs, greet::Greet, test_event::TestEvent,
 };
 use leptos::prelude::*;
 
@@ -58,6 +58,10 @@ fn Features() -> impl IntoView {
 
         <FeatureDion title="Dialog".into() flex_col=true>
             <Dialog />
+        </FeatureDion>
+
+        <FeatureDion title="File System".into() flex_col=true>
+            <Fs />
         </FeatureDion>
     }
 }
