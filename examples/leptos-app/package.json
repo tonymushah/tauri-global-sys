@@ -7,7 +7,9 @@
     "dev": "trunk serve --config frontend/Trunk.toml",
     "build": "trunk build --release --config frontend/Trunk.toml",
     "stylance": "stylance ./frontend",
-    "stylance:watch": "stylance --watch ./frontend"
+    "stylance:watch": "stylance --watch ./frontend",
+    "tauri:dev": "tauri dev --no-watch",
+    "tauri:dev:watch": "tauri dev"
   },
   "keywords": [],
   "author": "",
