@@ -16,6 +16,7 @@ log = { optional = true, workspace = true }
 semver = { workspace = true, features = ["serde"] }
 serde_repr = { workspace = true }
 enum_all_variants = { workspace = true }
+enum-repr = { workspace = true }
 
 [dev-dependencies]
 serde_json.workspace = true

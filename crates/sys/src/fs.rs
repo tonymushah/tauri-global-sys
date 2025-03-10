@@ -52,11 +52,13 @@
 //!
 //! Note that this scope applies to all APIs on this module.
 use enum_all_variants::AllVariants;
+use enum_repr::EnumRepr;
 use serde::{Deserialize, Serialize};
 use serde_repr::{Deserialize_repr, Serialize_repr};
 
 pub mod raw;
 
+#[EnumRepr(type = "u8", implicit = true)]
 #[derive(
     Debug,
     Clone,
@@ -70,7 +72,6 @@ pub mod raw;
     Hash,
     AllVariants,
 )]
-#[repr(u8)]
 pub enum BaseDirectory {
     Audio = 1,
     Cache,
