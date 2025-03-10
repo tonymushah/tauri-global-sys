@@ -51,13 +51,24 @@
 //! Trying to execute any API with a URL not configured on the scope results in a promise rejection due to denied access.
 //!
 //! Note that this scope applies to all APIs on this module.
+use enum_all_variants::AllVariants;
 use serde::{Deserialize, Serialize};
 use serde_repr::{Deserialize_repr, Serialize_repr};
 
 pub mod raw;
 
 #[derive(
-    Debug, Clone, Copy, Serialize_repr, Deserialize_repr, PartialEq, Eq, PartialOrd, Ord, Hash,
+    Debug,
+    Clone,
+    Copy,
+    Serialize_repr,
+    Deserialize_repr,
+    PartialEq,
+    Eq,
+    PartialOrd,
+    Ord,
+    Hash,
+    AllVariants,
 )]
 #[repr(u8)]
 pub enum BaseDirectory {

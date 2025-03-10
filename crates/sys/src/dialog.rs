@@ -19,12 +19,24 @@
 //! ```
 //! __It is recommended to allowlist only the APIs you use for optimal bundle size and security.__
 
+use enum_all_variants::AllVariants;
 use serde::{Deserialize, Serialize};
 
 pub mod raw;
 
 #[derive(
-    Debug, Clone, Copy, Default, Deserialize, Serialize, PartialEq, Eq, PartialOrd, Ord, Hash,
+    Debug,
+    Clone,
+    Copy,
+    Default,
+    Deserialize,
+    Serialize,
+    PartialEq,
+    Eq,
+    PartialOrd,
+    Ord,
+    Hash,
+    AllVariants,
 )]
 #[serde(rename_all = "camelCase")]
 pub enum DialogType {
