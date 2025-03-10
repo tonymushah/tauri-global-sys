@@ -8,3 +8,7 @@ where
 {
     serde_wasm_bindgen::from_value(Object::from_entries(form_data)?.into())
 }
+
+pub fn is_on(form_data: &FormData, entry: &str) -> bool {
+    form_data.get(entry).as_string() == Some(String::from("on"))
+}

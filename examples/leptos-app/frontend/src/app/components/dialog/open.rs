@@ -4,7 +4,7 @@ use tauri_global_sys::dialog::{open, DialogFilter, OpenDialogOptions};
 use wasm_bindgen::JsCast;
 use web_sys::{FormData, HtmlFormElement};
 
-use crate::app::utils::deser_form_data::deser_form_data;
+use crate::app::utils::deser_form_data::{deser_form_data, is_on};
 
 #[component]
 pub fn Open() -> impl IntoView {
@@ -33,12 +33,9 @@ pub fn Open() -> impl IntoView {
                             })
                             .collect::<Vec<_>>()
                     });
-                opt.directory =
-                    Some(form_data.get("_directory").as_string() == Some("on".to_string()));
-                opt.recursive =
-                    Some(form_data.get("_recursive").as_string() == Some("on".to_string()));
-                opt.multiple =
-                    Some(form_data.get("_multiple").as_string() == Some("on".to_string()))
+                opt.directory = Some(is_on(&form_data, "_directory"));
+                opt.recursive = Some(is_on(&form_data, "_recursive"));
+                opt.multiple = Some(is_on(&form_data, "_multiple"));
             }
             log::debug!("{:#?}", options);
             let res = open(options)
