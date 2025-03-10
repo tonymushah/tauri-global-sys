@@ -8,7 +8,8 @@ pub fn BaseDirectorySelect(
     #[prop(optional)] id: Option<String>,
 ) -> impl IntoView {
     view! {
-        <select name=name id=id aria_placeholder=placeholder>
+        <select name=name id=id>
+            <option value="">{placeholder}</option>
             {BaseDirectory::all_variants()
                 .iter()
                 .map(|e| view! { <option value=*e as u8>{format!("{:?}", e)}</option> })

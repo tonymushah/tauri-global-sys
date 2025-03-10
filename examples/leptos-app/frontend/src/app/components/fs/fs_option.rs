@@ -6,7 +6,11 @@ use crate::app::components::fs::base_directory::BaseDirectorySelect;
 pub fn FsOptionInputs(#[prop(into)] append_input_name: String) -> impl IntoView {
     view! {
         <div>
-            <input type="checkbox" name=append_input_name placeholder="Append" />
+            <label for="">
+                <input type="checkbox" name=append_input_name placeholder="Append" />
+                " Append"
+            </label>
+            <br />
             <BaseDirectorySelect name="dir" placeholder="Base directory" />
         </div>
     }

@@ -104,7 +104,7 @@ pub fn CopyFile() -> impl IntoView {
             <p on:click=move |_| {
                 action.dispatch_local(ActionType::SetSource);
             }>
-                "Source:"
+                "Source: "
                 {move || {
                     match source.get() {
                         Some(src) => src.into_any(),
@@ -115,7 +115,7 @@ pub fn CopyFile() -> impl IntoView {
             <p on:click=move |_| {
                 action.dispatch_local(ActionType::SetDestination);
             }>
-                "Destination:"
+                "Destination: "
                 {move || {
                     match destination.get() {
                         Some(src) => src.into_any(),
