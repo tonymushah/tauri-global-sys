@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 use tauri_global_sys::{
     dialog::{open, save, OpenDialogOptions, SaveDialogOptions},
-    fs::{copy_file, FsOptions},
+    fs::{copy_file, BaseDirectory, FsOptions},
 };
 use wasm_bindgen::JsCast;
 use web_sys::{FormData, HtmlFormElement};
@@ -19,6 +19,7 @@ pub enum ActionType {
 }
 
 const APPEND_INPUT_NAME: &str = "_append__";
+const FS_OPTION_INPUT_NAME: &str = "fs_options";
 
 #[component]
 pub fn CopyFile() -> impl IntoView {
@@ -49,7 +50,7 @@ pub fn CopyFile() -> impl IntoView {
                 }
                 ActionType::SetDestination => {
                     let dest = save(Some(SaveDialogOptions {
-                        title: Some("Source file".into()),
+                        title: Some("Destination file".into()),
                         ..Default::default()
                     }))
                     .await
@@ -73,7 +74,14 @@ pub fn CopyFile() -> impl IntoView {
                         .map_err(|e| anyhow::Error::msg(e.to_string()))?;
                     if let Some(opt) = &mut options {
                         opt.append = Some(is_on(&form_data, APPEND_INPUT_NAME));
+                        opt.dir = form_data
+                            .get(FS_OPTION_INPUT_NAME)
+                            .as_string()
+                            .filter(|e| !e.is_empty())
+                            .and_then(|e| e.parse::<u8>().ok())
+                            .and_then(BaseDirectory::from_repr);
                     }
+                    log::debug!("{:#?}", options);
                     copy_file(&src, &dest, options)
                         .await
                         .map_err(|e| anyhow::Error::msg(e.to_string()))?;
@@ -86,7 +94,7 @@ pub fn CopyFile() -> impl IntoView {
     let is_loading = action.pending();
     view! {
         {move || {
-            match action_data.read().as_ref().filter(|_| is_loading.read() == true) {
+            match action_data.read().as_ref().filter(|_| is_loading.read() == false) {
                 Some(Err(e)) => view! { <p style:color="red">{format!("{e}")}</p> }.into_any(),
                 Some(Ok(_)) => view! { <p style:color="green">"File copied!"</p> }.into_any(),
                 None => None::<()>.into_any(),
@@ -123,7 +131,10 @@ pub fn CopyFile() -> impl IntoView {
                     }
                 }}
             </p>
-            <FsOptionInputs append_input_name=APPEND_INPUT_NAME />
+            <FsOptionInputs
+                append_input_name=APPEND_INPUT_NAME
+                base_dir_select_name=FS_OPTION_INPUT_NAME
+            />
             <button type="submit">"Copy ;)))"</button>
         </form>
     }
