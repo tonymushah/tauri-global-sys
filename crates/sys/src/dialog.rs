@@ -57,7 +57,7 @@ fn option_string_data(data: &Option<String>) -> bool {
 #[serde(untagged)]
 pub enum ConfirmDialogOptions {
     Title(String),
-    /// Ref: https://v1.tauri.app/v1/api/js/dialog/#confirmdialogoptions
+    /// Ref: <https://v1.tauri.app/v1/api/js/dialog/#confirmdialogoption>
     #[serde(rename_all = "camelCase")]
     Options {
         /// The label of the cancel button.
