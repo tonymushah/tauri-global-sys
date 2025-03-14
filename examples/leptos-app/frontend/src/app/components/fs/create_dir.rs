@@ -49,6 +49,7 @@ pub fn CreateDir() -> impl IntoView {
         {move || {
             match action_value.read().as_ref().filter(|_| action_pending.read() == false) {
                 Some(Err(e)) => view! { <p style:color="red">{format!("{e}")}</p> }.into_any(),
+                Some(Ok(_)) => view! { <p style:color="green">"New dir created"</p> }.into_any(),
                 _ => None::<()>.into_any(),
             }
         }}
