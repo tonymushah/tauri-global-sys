@@ -21,6 +21,7 @@ futures.workspace = true
 web-sys.workspace = true
 anyhow.workspace = true
 enum-kinds.workspace = true
+enum_all_variants = { workspace = true }
 
 [package.metadata.stylance]
 output_dir = "./"
