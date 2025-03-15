@@ -4,8 +4,7 @@ use tauri_global_sys::{
     dialog::{open, save, OpenDialogOptions, SaveDialogOptions},
     fs::{copy_file, BaseDirectory, FsOptions},
 };
-use wasm_bindgen::JsCast;
-use web_sys::{FormData, HtmlFormElement};
+use web_sys::FormData;
 
 use crate::app::{
     components::fs::fs_option::FsOptionInputs,
