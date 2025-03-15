@@ -11,7 +11,7 @@ use crate::app::{
     components::fs::fs_option::FsOptionInputs,
     utils::{
         deser_form_data::{deser_form_data, is_on},
-        extract_from_data::extract_from_data,
+        extract_from_data::extract_form_data,
     },
 };
 
@@ -110,7 +110,7 @@ pub fn CopyFile() -> impl IntoView {
         }}
         <form on:submit=move |ev| {
             ev.prevent_default();
-            let form_data = extract_from_data(&ev);
+            let form_data = extract_form_data(&ev);
             action.dispatch_local(ActionType::Copy(form_data));
         }>
             <p on:click=move |_| {
