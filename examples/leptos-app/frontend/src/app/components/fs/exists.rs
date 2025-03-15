@@ -67,6 +67,7 @@ pub fn Exists() -> impl IntoView {
                 append_input_name=APPEND_INPUT_NAME
                 base_dir_select_name=BASE_DIR_SELECT
             />
+            <button type="submit">"Check..."</button>
         </form>
     }
 }
