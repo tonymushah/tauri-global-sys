@@ -9,7 +9,10 @@ use web_sys::{FormData, HtmlFormElement};
 
 use crate::app::{
     components::fs::fs_option::FsOptionInputs,
-    utils::deser_form_data::{deser_form_data, is_on},
+    utils::{
+        deser_form_data::{deser_form_data, is_on},
+        extract_from_data::extract_from_data,
+    },
 };
 
 #[derive(Debug, Clone, EnumKind)]
@@ -107,11 +110,7 @@ pub fn CopyFile() -> impl IntoView {
         }}
         <form on:submit=move |ev| {
             ev.prevent_default();
-            let form = ev
-                .target()
-                .and_then(|t| t.dyn_into::<HtmlFormElement>().ok())
-                .expect("Should be a form element");
-            let form_data = FormData::new_with_form(&form).expect("Cannot make a form data");
+            let form_data = extract_from_data(&ev);
             action.dispatch_local(ActionType::Copy(form_data));
         }>
             <p on:click=move |_| {
