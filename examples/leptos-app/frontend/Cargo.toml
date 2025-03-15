@@ -20,6 +20,7 @@ log.workspace = true
 futures.workspace = true
 web-sys.workspace = true
 anyhow.workspace = true
+enum-kinds.workspace = true
 
 [package.metadata.stylance]
 output_dir = "./"

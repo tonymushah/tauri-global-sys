@@ -1,3 +1,4 @@
+use enum_kinds::EnumKind;
 use leptos::prelude::*;
 use tauri_global_sys::{
     dialog::{open, save, OpenDialogOptions, SaveDialogOptions},
@@ -11,18 +12,12 @@ use crate::app::{
     utils::deser_form_data::{deser_form_data, is_on},
 };
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, EnumKind)]
+#[enum_kind(ActionTypeKind)]
 pub enum ActionType {
     SetSource,
     SetDestination,
     Copy(FormData),
-}
-
-#[derive(Debug, Clone, Copy)]
-pub enum ActionTypeKind {
-    SetSource,
-    SetDestination,
-    Copy,
 }
 
 const APPEND_INPUT_NAME: &str = "_append__";
