@@ -9,7 +9,7 @@
   margin: 0px;
 }
 
-.p:hover {
+.p.is-directory:hover {
   border-color: #29000b;
   border-radius: var(--border-thickness);
   border-width: var(--border-thickness);
@@ -18,13 +18,13 @@
   box-shadow: #29000b 0px 3px 0px;
 }
 
-.p:active {
+.p.is-directory:active {
   transform: translateY(calc(var(--border-thickness) * 2));
   box-shadow: none;
 }
 
 .is-file {
-  color: #00a608;
+  color: #011602;
   text-decoration: underline;
 }
 
@@ -35,8 +35,8 @@
 
 .file-entry-childrens {
   display: grid;
-  gap: 2px;
-  margin-left: 5px;
+  gap: 6px;
+  margin-left: 16px;
 }
 
 .read-dir-button {
@@ -58,6 +58,8 @@
 
 .read-dir {
   display: grid;
-  gap: 6px;
+  gap: 8px;
   margin-left: 5px;
+  text-align: left;
+  margin-top: 10px;
 }
