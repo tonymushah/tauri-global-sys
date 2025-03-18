@@ -238,6 +238,16 @@ impl OpenReturnType {
             OpenReturnType::Multiple(items) => items,
         }
     }
+    /// Get a single value.
+    ///
+    /// If [self] is [`Multiple`](OpenReturnType::Multiple),
+    /// only the first one is returned
+    pub fn single(self) -> Option<String> {
+        match self {
+            Self::Multiple(items) => items.into_iter().next(),
+            Self::Single(path) => Some(path),
+        }
+    }
 }
 
 /// Open a file/directory selection dialog.
