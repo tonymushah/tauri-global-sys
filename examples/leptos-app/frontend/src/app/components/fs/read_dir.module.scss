@@ -1,0 +1,63 @@
+.file-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.p {
+  --border-thickness: 3px;
+  margin: 0px;
+}
+
+.p:hover {
+  border-color: #29000b;
+  border-radius: var(--border-thickness);
+  border-width: var(--border-thickness);
+  border-style: solid;
+  padding: 6px 3px;
+  box-shadow: #29000b 0px 3px 0px;
+}
+
+.p:active {
+  transform: translateY(calc(var(--border-thickness) * 2));
+  box-shadow: none;
+}
+
+.is-file {
+  color: #00a608;
+  text-decoration: underline;
+}
+
+.is-directory {
+  color: #00687b;
+  text-decoration: dashed;
+}
+
+.file-entry-childrens {
+  display: grid;
+  gap: 2px;
+  margin-left: 5px;
+}
+
+.read-dir-button {
+  --border-color: rgb(22, 18, 63);
+  --border-thickness: 3px;
+  border-color: var(--border-color, #121212);
+  border-radius: 3px;
+  border-style: solid;
+  border-width: var(--border-thickness);
+  box-shadow: var(--border-color, #121212) 0px calc(var(--border-thickness) * 2)
+    0px;
+  padding: 3px 6px;
+}
+
+.read-dir-button:active {
+  transform: translateY(calc(var(--border-thickness) * 2));
+  box-shadow: none;
+}
+
+.read-dir {
+  display: grid;
+  gap: 6px;
+  margin-left: 5px;
+}

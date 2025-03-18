@@ -4,12 +4,14 @@ pub mod create_dir;
 pub mod exists;
 pub mod fs_dir_option;
 pub mod fs_option;
+pub mod read_dir;
 pub mod read_file;
 
 use copy_file::CopyFile;
 use create_dir::CreateDir;
 use exists::Exists;
 use leptos::prelude::*;
+use read_dir::ReadDir;
 use read_file::ReadFile;
 
 #[component]
@@ -31,6 +33,10 @@ pub fn Fs() -> impl IntoView {
             <section>
                 <h4>"Read file"</h4>
                 <ReadFile />
+            </section>
+            <section>
+                <h4>"Read directory"</h4>
+                <ReadDir />
             </section>
         </div>
     }
