@@ -123,7 +123,7 @@ pub struct FsBinaryFileOption {
 
 /// Struct interface to [`FsDirOptions`](https://v1.tauri.app/v1/api/js/fs#fsdiroptions)
 ///
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Hash, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct FsDirOptions {
     pub dir: Option<BaseDirectory>,
@@ -132,7 +132,7 @@ pub struct FsDirOptions {
 
 /// Struct interface to [`FsOptions`](https://v1.tauri.app/v1/api/js/fs#fsoptions)
 ///
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Hash, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct FsOptions {
     /// Whether the content should overwrite the content of the file or append to it.
