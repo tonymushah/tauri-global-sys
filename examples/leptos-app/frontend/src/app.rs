@@ -6,7 +6,7 @@ pub mod utils;
 
 use components::{
     app_module::AppModule, cli_matches_test::TestCliMatches, clip_board::ClipBoard, dialog::Dialog,
-    fs::Fs, greet::Greet, test_event::TestEvent,
+    fs::Fs, global_shortcuts::GlobalShortcut, greet::Greet, test_event::TestEvent,
 };
 use leptos::prelude::*;
 
@@ -62,6 +62,10 @@ fn Features() -> impl IntoView {
 
         <FeatureDion title="File System".into() flex_col=true>
             <Fs />
+        </FeatureDion>
+
+        <FeatureDion title="Global shortcuts".into() flex_col=true>
+            <GlobalShortcut />
         </FeatureDion>
     }
 }
