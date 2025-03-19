@@ -17,6 +17,9 @@ pub mod event;
 /// The equivalent of the [`window.__TAURI__.fs`](https://v1.tauri.app/v1/api/js/fs) module.
 ///
 pub mod fs;
+/// the equivalent of the [`window.__TAURI__.globalShortcut`](https://v1.tauri.app/) module.
+///
+pub mod global_shortcut;
 /// The equivalent of the [`window.__TAURI__.tauri`](https://v1.tauri.app/v1/api/js/tauri) module.
 ///
 pub mod tauri;
