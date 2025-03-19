@@ -8,6 +8,7 @@ pub mod read_dir;
 pub mod read_file;
 pub mod remove_smth;
 pub mod rename_file;
+pub mod write_file;
 
 use copy_file::CopyFile;
 use create_dir::CreateDir;
@@ -17,6 +18,7 @@ use read_dir::ReadDir;
 use read_file::ReadFile;
 use remove_smth::RemoveSmth;
 use rename_file::RenameFile;
+use write_file::WriteFile;
 
 #[component]
 pub fn Fs() -> impl IntoView {
@@ -49,6 +51,10 @@ pub fn Fs() -> impl IntoView {
             <section>
                 <h4>"Rename/Move file"</h4>
                 <RenameFile />
+            </section>
+            <section>
+                <h4>"Write file"</h4>
+                <WriteFile />
             </section>
         </div>
     }

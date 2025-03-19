@@ -22,6 +22,8 @@ web-sys.workspace = true
 anyhow.workspace = true
 enum-kinds.workspace = true
 enum_all_variants = { workspace = true }
+enum-repr = { workspace = true }
+serde_repr = { workspace = true }
 
 [package.metadata.stylance]
 output_dir = "./"
