@@ -7,6 +7,7 @@ pub mod fs_option;
 pub mod read_dir;
 pub mod read_file;
 pub mod remove_smth;
+pub mod rename_file;
 
 use copy_file::CopyFile;
 use create_dir::CreateDir;
@@ -15,6 +16,7 @@ use leptos::prelude::*;
 use read_dir::ReadDir;
 use read_file::ReadFile;
 use remove_smth::RemoveSmth;
+use rename_file::RenameFile;
 
 #[component]
 pub fn Fs() -> impl IntoView {
@@ -43,6 +45,10 @@ pub fn Fs() -> impl IntoView {
             <section>
                 <h4>"Remove file/directory"</h4>
                 <RemoveSmth />
+            </section>
+            <section>
+                <h4>"Rename/Move file"</h4>
+                <RenameFile />
             </section>
         </div>
     }
