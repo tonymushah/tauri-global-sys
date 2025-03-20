@@ -76,3 +76,9 @@ impl Body {
         Self::form(data.into())
     }
 }
+
+impl From<Uint8Array> for Body {
+    fn from(value: Uint8Array) -> Self {
+        Self::bytes(value.into())
+    }
+}
