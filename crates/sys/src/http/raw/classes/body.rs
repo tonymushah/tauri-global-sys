@@ -16,7 +16,7 @@ extern "C" {
 
     /// Setter for the [`Body.payload`](http://v1.tauri.app/v1/api/js/http#payload) property.
     #[wasm_bindgen(method, setter, js_class = Body, js_name = payload)]
-    pub fn set_payload(this: &Body);
+    pub fn set_payload(this: &Body, payload: JsValue);
 
     /// Getter for the [`Body.type`](http://v1.tauri.app/v1/api/js/http#type) property.
     #[wasm_bindgen(method, getter, js_class = Body, js_name = type)]
