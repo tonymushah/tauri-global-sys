@@ -20,6 +20,19 @@ pub struct Event<T> {
     pub window_label: Option<String>,
 }
 
+#[derive(Debug, Deserialize, Clone)]
+pub struct EventJsCasted<T>
+where
+    T: JsCast,
+{
+    pub event: String,
+    pub id: usize,
+    #[serde(with = "serde_wasm_bindgen::preserve")]
+    pub payload: T,
+    #[serde(alias = "windowLabel")]
+    pub window_label: Option<String>,
+}
+
 pub async fn emit<P: Serialize>(event: &str, payload: &P) -> Result<(), crate::Error> {
     let value = serde_wasm_bindgen::to_value(payload)?;
     raw::emit(event, &value).await?;
