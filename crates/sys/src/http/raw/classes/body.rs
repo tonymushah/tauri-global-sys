@@ -1,3 +1,4 @@
+use js_sys::Uint8Array;
 use serde_wasm_bindgen::to_value as to_js_value;
 use wasm_bindgen::prelude::*;
 use web_sys::FormData;
@@ -57,6 +58,12 @@ extern "C" {
     /// Ref: <http://v1.tauri.app/v1/api/js/http#text>
     #[wasm_bindgen(static_method_of = Body)]
     pub fn text(value: &str) -> Body;
+}
+
+impl Default for Body {
+    fn default() -> Self {
+        Self::bytes(Uint8Array::default().into())
+    }
 }
 
 impl Body {
