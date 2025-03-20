@@ -190,6 +190,12 @@ pub enum Body {
     Text(String),
 }
 
+impl Default for Body {
+    fn default() -> Self {
+        Body::Bytes(Default::default())
+    }
+}
+
 impl Body {
     pub fn into_raw(&self) -> RawBody {
         match self {
