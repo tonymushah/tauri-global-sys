@@ -93,7 +93,7 @@ impl Default for ConfirmDialogOptions {
 
 /// Extension filters for the file dialog.
 ///
-///  Ref: https://v1.tauri.app/v1/api/js/dialog/#dialogfilter
+///  Ref: <https://v1.tauri.app/v1/api/js/dialog/#dialogfilter>
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq, Hash)]
 pub struct DialogFilter {
     pub extensions: Vec<String>,
@@ -104,7 +104,7 @@ pub struct DialogFilter {
 #[serde(untagged)]
 pub enum MessageDialogOptions {
     Title(String),
-    /// Ref: https://v1.tauri.app/v1/api/js/dialog/#messagedialogoptions
+    /// Ref: <https://v1.tauri.app/v1/api/js/dialog/#messagedialogoptions>
     #[serde(rename_all = "camelCase")]
     Options {
         /// The label of the confirm button.
@@ -162,7 +162,7 @@ impl From<MessageDialogOptions> for ConfirmDialogOptions {
 
 /// Options for the open dialog.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/dialog/#opendialogoptions
+/// Ref: <https://v1.tauri.app/v1/api/js/dialog/#opendialogoptions>
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq, Hash, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct OpenDialogOptions {
@@ -184,7 +184,7 @@ pub struct OpenDialogOptions {
 
 /// Options for the save dialog.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/dialog/#savedialogoptions
+/// Ref: <https://v1.tauri.app/v1/api/js/dialog/#savedialogoptions>
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq, Hash, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct SaveDialogOptions {
@@ -200,7 +200,7 @@ pub struct SaveDialogOptions {
 
 /// Shows a question dialog with `Yes` and `No` buttons.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/dialog/#ask
+/// Ref: <https://v1.tauri.app/v1/api/js/dialog/#ask>
 pub async fn ask(message: &str, options: Option<ConfirmDialogOptions>) -> crate::Result<bool> {
     let res = raw::ask(message, serde_wasm_bindgen::to_value(&options)?).await?;
     Ok(serde_wasm_bindgen::from_value(res)?)
@@ -208,7 +208,7 @@ pub async fn ask(message: &str, options: Option<ConfirmDialogOptions>) -> crate:
 
 /// Shows a question dialog with Ok and Cancel buttons.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/dialog/#confirm
+/// Ref: <https://v1.tauri.app/v1/api/js/dialog/#confirm>
 pub async fn confirm(message: &str, options: Option<ConfirmDialogOptions>) -> crate::Result<bool> {
     let res = raw::confirm(message, serde_wasm_bindgen::to_value(&options)?).await?;
     Ok(serde_wasm_bindgen::from_value(res)?)
@@ -216,7 +216,7 @@ pub async fn confirm(message: &str, options: Option<ConfirmDialogOptions>) -> cr
 
 /// Shows a message dialog with Ok button.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/dialog/#message
+/// Ref: <https://v1.tauri.app/v1/api/js/dialog/#message>
 pub async fn message(message: &str, options: Option<MessageDialogOptions>) -> crate::Result<()> {
     raw::message(message, serde_wasm_bindgen::to_value(&options)?).await?;
     Ok(())
