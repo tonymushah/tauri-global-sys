@@ -156,7 +156,7 @@ pub struct FsTextFileOption {
 
 /// Copies a file to a destination.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/fs#copyfile
+/// Ref: <https://v1.tauri.app/v1/api/js/fs#copyfile>
 pub async fn copy_file(
     source: &str,
     destination: &str,
@@ -170,7 +170,7 @@ pub async fn copy_file(
 ///
 /// If one of the path's parent components doesn't exist and the `recursive` option isn't set to true, the promise will be rejected.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/fs#createdir
+/// Ref: <https://v1.tauri.app/v1/api/js/fs#createdir>
 pub async fn create_dir(dir: &str, options: Option<FsDirOptions>) -> crate::Result<()> {
     raw::createDir(dir, serde_wasm_bindgen::to_value(&options)?).await?;
     Ok(())
@@ -178,7 +178,7 @@ pub async fn create_dir(dir: &str, options: Option<FsDirOptions>) -> crate::Resu
 
 /// Check if a path exists.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/fs#exists
+/// Ref: <https://v1.tauri.app/v1/api/js/fs#exists>
 ///
 /// Since: 1.1.0
 pub async fn exists(path: &str, options: Option<FsOptions>) -> crate::Result<bool> {
@@ -189,7 +189,7 @@ pub async fn exists(path: &str, options: Option<FsOptions>) -> crate::Result<boo
 
 /// Reads a file as byte array.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/fs#readbinaryfile
+/// Ref: <https://v1.tauri.app/v1/api/js/fs#readbinaryfile>
 pub async fn read_binary_file(path: &str, options: Option<FsOptions>) -> crate::Result<Vec<u8>> {
     let res = raw::readBinaryFile(path, serde_wasm_bindgen::to_value(&options)?).await?;
     Ok(res.to_vec())
@@ -197,7 +197,7 @@ pub async fn read_binary_file(path: &str, options: Option<FsOptions>) -> crate::
 
 /// List directory files.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/fs#readdir
+/// Ref: <https://v1.tauri.app/v1/api/js/fs#readdir>
 pub async fn read_dir(dir: &str, options: Option<FsDirOptions>) -> crate::Result<Vec<FileEntry>> {
     Ok(serde_wasm_bindgen::from_value(
         raw::readDir(dir, serde_wasm_bindgen::to_value(&options)?).await?,
@@ -206,7 +206,7 @@ pub async fn read_dir(dir: &str, options: Option<FsDirOptions>) -> crate::Result
 
 /// Reads a file as an UTF-8 encoded string.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/fs#readtextfile
+/// Ref: <https://v1.tauri.app/v1/api/js/fs#readtextfile>
 pub async fn read_text_file(file_path: &str, options: Option<FsOptions>) -> crate::Result<String> {
     let res = raw::readTextFile(file_path, serde_wasm_bindgen::to_value(&options)?).await?;
     Ok(serde_wasm_bindgen::from_value(res)?)
@@ -216,7 +216,7 @@ pub async fn read_text_file(file_path: &str, options: Option<FsOptions>) -> crat
 ///
 /// If the directory is not empty and the `recursive` option isn't set to true, the promise will be rejected.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/fs#removedir
+/// Ref: <https://v1.tauri.app/v1/api/js/fs#removedir>
 pub async fn remove_dir(dir: &str, options: Option<FsDirOptions>) -> crate::Result<()> {
     raw::removeDir(dir, serde_wasm_bindgen::to_value(&options)?).await?;
     Ok(())
@@ -224,7 +224,7 @@ pub async fn remove_dir(dir: &str, options: Option<FsDirOptions>) -> crate::Resu
 
 /// Removes a file.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/fs#removefile
+/// Ref: <https://v1.tauri.app/v1/api/js/fs#removefile>
 pub async fn remove_file(file: &str, options: Option<FsOptions>) -> crate::Result<()> {
     raw::removeFile(file, serde_wasm_bindgen::to_value(&options)?).await?;
     Ok(())
@@ -232,7 +232,7 @@ pub async fn remove_file(file: &str, options: Option<FsOptions>) -> crate::Resul
 
 /// Renames a file.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/fs#renamefile
+/// Ref: <https://v1.tauri.app/v1/api/js/fs#renamefile>
 pub async fn rename_file(
     old_path: &str,
     new_path: &str,
@@ -244,7 +244,7 @@ pub async fn rename_file(
 
 /// Writes a byte array content to a file.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/fs#writebinaryfile
+/// Ref: <https://v1.tauri.app/v1/api/js/fs#writebinaryfile>
 pub async fn write_binary_file(
     path: &str,
     contents: Vec<u8>,
@@ -261,7 +261,7 @@ pub async fn write_binary_file(
 
 /// Pretty much the same as [`write_binary_file`] but uses [`FsBinaryFileOption`] instead.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/fs#writebinaryfile
+/// Ref: <https://v1.tauri.app/v1/api/js/fs#writebinaryfile>
 pub async fn write_binary_file2(
     file: FsBinaryFileOption,
     options: Option<FsOptions>,
@@ -276,7 +276,7 @@ pub async fn write_binary_file2(
 
 /// Writes a UTF-8 text file.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/fs#writetextfile
+/// Ref: <https://v1.tauri.app/v1/api/js/fs#writetextfile>
 pub async fn write_text_file(
     path: &str,
     contents: &str,
@@ -288,7 +288,7 @@ pub async fn write_text_file(
 
 /// Pretty much the same as [`write_text_file`] but uses [`FsTextFileOption`] instead.
 ///
-/// Ref: https://v1.tauri.app/v1/api/js/fs#writebinaryfile
+/// Ref: <https://v1.tauri.app/v1/api/js/fs#writebinaryfile>
 pub async fn write_text_file2(
     file: FsTextFileOption,
     options: Option<FsOptions>,
