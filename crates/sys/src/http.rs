@@ -39,6 +39,7 @@ pub mod raw;
 
 use enum_all_variants::AllVariants;
 use enum_repr::EnumRepr;
+use serde::{Deserialize, Serialize};
 use serde_repr::{Deserialize_repr, Serialize_repr};
 
 #[EnumRepr(type = "u8", implicit = true)]
@@ -59,4 +60,20 @@ pub enum ResponseType {
     JSON = 1,
     Text,
     Binary,
+}
+
+#[derive(
+    Debug, Deserialize, Serialize, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, AllVariants,
+)]
+#[serde(rename_all = "UPPERCASE")]
+pub enum HttpVerb {
+    Get,
+    Post,
+    Put,
+    Delete,
+    Patch,
+    Head,
+    Options,
+    Connect,
+    Trace,
 }
