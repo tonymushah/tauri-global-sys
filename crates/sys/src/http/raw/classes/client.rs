@@ -1,10 +1,11 @@
 use js_sys::Number;
 use wasm_bindgen::prelude::*;
 
-use super::{response::Response, Body};
+use super::{response::Response, RawBody as Body};
 
 #[wasm_bindgen(js_namespace = ["window","__TAURI__","http"])]
 extern "C" {
+    /// Ref: <http://v1.tauri.app/v1/api/js/http#client>
     #[derive(Clone, Debug)]
     pub type Client;
 
