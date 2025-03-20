@@ -36,12 +36,14 @@
 //! Trying to execute any API with a URL not configured on the scope results in a promise rejection due to denied access.
 
 pub mod raw;
+pub mod send_sync_client;
 
 use enum_all_variants::AllVariants;
 use enum_repr::EnumRepr;
 use serde::{Deserialize, Serialize};
 use serde_repr::{Deserialize_repr, Serialize_repr};
 
+/// Ref: <http://v1.tauri.app/v1/api/js/http#responsetype>
 #[EnumRepr(type = "u8", implicit = true)]
 #[derive(
     Debug,
@@ -62,6 +64,7 @@ pub enum ResponseType {
     Binary,
 }
 
+/// Ref: <http://v1.tauri.app/v1/api/js/http#httpverb>
 #[derive(
     Debug,
     Deserialize,
@@ -89,3 +92,10 @@ pub enum HttpVerb {
     Connect,
     Trace,
 }
+
+pub use raw::{
+    fetch, Body, ClientsOptions, FetchOptions, FilePart, FilePartFile, HttpOptions, Part,
+    RequestOptions, Response,
+};
+
+pub use send_sync_client::{Client, HttpError};
