@@ -63,10 +63,22 @@ pub enum ResponseType {
 }
 
 #[derive(
-    Debug, Deserialize, Serialize, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, AllVariants,
+    Debug,
+    Deserialize,
+    Serialize,
+    Clone,
+    Copy,
+    PartialEq,
+    Eq,
+    PartialOrd,
+    Ord,
+    Hash,
+    AllVariants,
+    Default,
 )]
 #[serde(rename_all = "UPPERCASE")]
 pub enum HttpVerb {
+    #[default]
     Get,
     Post,
     Put,
