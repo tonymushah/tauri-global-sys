@@ -18,6 +18,8 @@ pub enum Error {
     FuturesOneshotCanceled(#[from] futures::channel::oneshot::Canceled),
     #[error("{}", js_sys::Error::message(.0))]
     Js(js_sys::Error),
+    #[error("The current `RawClient` inside the `RawClientWrapper` is empty")]
+    RawClientWrapperInnerEmpty,
 }
 
 impl Error {
