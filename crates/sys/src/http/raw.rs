@@ -454,6 +454,20 @@ impl Drop for RawClientWrapper {
     }
 }
 
+/// Perform an HTTP request using the default client.
+pub async fn raw_fetch(url: &str, options: FetchOptions) -> crate::Result<RawResponse> {
+    Ok(functions::rawFetch(url, serde_wasm_bindgen::to_value(&options)?).await?)
+}
+
+/// Same as [`raw_fetch`] but this one allows you to deserialize the response data.
+pub async fn fetch<T: DeserializeOwned>(
+    url: &str,
+    options: FetchOptions,
+) -> crate::Result<Response<T>> {
+    let resp = raw_fetch(url, options).await?;
+    Ok(resp.try_into()?)
+}
+
 #[cfg(test)]
 mod connect_timout {
     use serde_json::json;
