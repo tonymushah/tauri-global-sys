@@ -17,6 +17,8 @@ semver = { workspace = true, features = ["serde"] }
 serde_repr = { workspace = true }
 enum_all_variants = { workspace = true }
 enum-repr = { workspace = true }
+serde_json.workspace = true
+uuid = { version = "1.16.0", features = ["js", "v4"] }
 
 [dev-dependencies]
 serde_json.workspace = true
