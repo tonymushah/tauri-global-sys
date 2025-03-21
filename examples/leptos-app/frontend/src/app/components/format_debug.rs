@@ -7,7 +7,7 @@ pub fn FormatDebug<'d, D: Debug>(dbg: &'d D) -> impl IntoView {
     let data = format!("{:#?}", dbg);
     data.lines()
         .map(|line| {
-            view! { <p>{String::from(line)}</p> }
+            view! { <span>{String::from(line)}</span> }
         })
         .collect_view()
 }
