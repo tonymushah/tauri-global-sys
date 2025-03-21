@@ -36,6 +36,11 @@
       "all": true,
       "fs": {
         "scope": ["$DOWNLOAD/**"]
+      },
+      "http": {
+        "all": false,
+        "request": true,
+        "scope": ["https://api.mangadex.org/**"]
       }
     },
     "windows": [
