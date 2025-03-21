@@ -13,7 +13,7 @@ use crate::app::components::format_debug::FormatDebug;
 #[component]
 pub fn Fetch() -> impl IntoView {
     let (url, set_url) = signal::<String>("https://api.mangadex.org/manga".into());
-    let res = LocalResource::new(move || {
+    let action = Action::new_local(move |_: &()| {
         let client = Client::default();
         async move {
             anyhow::Ok(
@@ -44,13 +44,15 @@ pub fn Fetch() -> impl IntoView {
             )
         }
     });
-    let is_pending = Memo::new(move |_| res.read().is_none());
+    action.dispatch_local(());
+    let is_pending = action.pending();
+    let action_value = action.value_local().read_only();
     view! {
         <div>
             <input type="text" placeholder="Url" bind:value=(url, set_url) />
             <button
                 on:click=move |_| {
-                    res.refetch();
+                    action.dispatch_local(());
                 }
                 disabled=is_pending
             >
@@ -59,12 +61,12 @@ pub fn Fetch() -> impl IntoView {
             <br />
             <article>
                 {move || {
-                    match res.read().as_deref() {
+                    match action_value.read().as_ref().filter(|_| is_pending.read() == false) {
                         Some(Ok(value)) => view! { <FormatDebug dbg=value /> }.into_any(),
                         Some(Err(err)) => {
                             view! { <p style:color="red">{format!("{err}")}</p> }.into_any()
                         }
-                        _ => ().into_any(),
+                        _ => view! { <p>"Loading..."</p> }.into_any(),
                     }
                 }}
             </article>
