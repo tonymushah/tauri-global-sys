@@ -31,7 +31,7 @@ pub fn Fetch() -> impl IntoView {
                     match res.read().as_deref() {
                         Some(Ok(value)) => format!("{:#?}", value).into_any(),
                         Some(Err(err)) => {
-                            view! { <p style:color="res">{format!("{err}")}</p> }.into_any()
+                            view! { <p style:color="red">{format!("{err}")}</p> }.into_any()
                         }
                         _ => ().into_any(),
                     }
