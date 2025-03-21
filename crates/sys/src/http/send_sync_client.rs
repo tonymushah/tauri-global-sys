@@ -2,7 +2,9 @@ use std::rc::Rc;
 
 use crate::http::Response;
 
-use super::{raw::get_raw_client_wrapper, Body, ClientsOptions, HttpOptions, RequestOptions};
+use super::{
+    raw::get_raw_client_wrapper, Body, ClientsOptions, FetchOptions, HttpOptions, RequestOptions,
+};
 use futures::{
     channel::{
         mpsc::{unbounded, SendError, UnboundedSender},
@@ -259,4 +261,22 @@ impl Client {
         })
         .await
     }
+}
+
+pub async fn fetch<T: DeserializeOwned>(
+    url: String,
+    options: FetchOptions,
+) -> Result<Response<T>, HttpError> {
+    let client = Client::default();
+    client
+        .request(HttpOptions {
+            body: options.body,
+            headers: options.headers,
+            method: options.method,
+            query: options.query,
+            response_type: options.response_type,
+            timeout: options.timeout,
+            url,
+        })
+        .await
 }
