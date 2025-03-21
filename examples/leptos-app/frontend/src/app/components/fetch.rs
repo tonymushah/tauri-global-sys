@@ -16,7 +16,16 @@ pub fn Fetch() -> impl IntoView {
     let is_pending = Memo::new(move |_| res.read().is_none());
     view! {
         <div>
-
+            <input type="text" placeholder="Url" bind:value=(url, set_url) />
+            <button
+                on:click=move |_| {
+                    res.refetch();
+                }
+                disabled=is_pending
+            >
+                "Refetch"
+            </button>
+            <br />
             <article>
                 {move || {
                     match res.read().as_deref() {
@@ -28,15 +37,6 @@ pub fn Fetch() -> impl IntoView {
                     }
                 }}
             </article>
-            <input type="text" placeholder="" bind:value=(url, set_url) />
-            <button
-                on:click=move |_| {
-                    res.refetch();
-                }
-                disabled=is_pending
-            >
-                "Refetch"
-            </button>
         </div>
     }
 }
