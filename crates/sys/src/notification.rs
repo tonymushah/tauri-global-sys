@@ -131,7 +131,7 @@ pub async fn request_permission() -> crate::Result<Permission> {
 /// Sends a notification to the user.
 ///
 /// ```rs,norun
-/// use tauri_global_sys::notification::{is_permission_granted, request_permission, Permission, send_notification};
+/// use tauri_global_sys::notification::{is_permission_granted, request_permission, Permission, send_notification, Options};
 ///
 /// let mut permission_granted = is_permission_granted().await?;
 /// if !permission_granted {
