@@ -98,7 +98,7 @@ pub enum Permission {
 
 /// Checks if the permission to send notifications is granted.
 ///
-/// ```rs,norun
+/// ```rs
 /// use tauri_global_sys::notification::is_permission_granted;
 ///
 /// let permission_granted = is_permission_granted().await?;
@@ -111,7 +111,7 @@ pub async fn is_permission_granted() -> crate::Result<bool> {
 
 /// Requests the permission to send notifications.
 ///
-/// ```rs,norun
+/// ```rs
 /// use tauri_global_sys::notification::{is_permission_granted, request_permission, Permission};
 ///
 /// let mut permission_granted = is_permission_granted().await?;
@@ -130,7 +130,7 @@ pub async fn request_permission() -> crate::Result<Permission> {
 
 /// Sends a notification to the user.
 ///
-/// ```rs,norun
+/// ```rs
 /// use tauri_global_sys::notification::{is_permission_granted, request_permission, Permission, send_notification, Options};
 ///
 /// let mut permission_granted = is_permission_granted().await?;
@@ -141,7 +141,7 @@ pub async fn request_permission() -> crate::Result<Permission> {
 /// if permission_granted {
 ///     send_notification("Tauri is awesome!".into())?;
 ///     send_notification(Options {
-///         title: "TAURI",
+///         title: "TAURI".into(),
 ///         body: Some("Tauri is awesome!".into()),
 ///         sound: None,
 ///         icon: None
