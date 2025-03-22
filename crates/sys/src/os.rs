@@ -22,6 +22,9 @@ use enum_all_variants::AllVariants;
 use serde::{Deserialize, Serialize};
 pub mod raw;
 
+/// Possible values of he operating system CPU architecture for which the tauri app was compiled
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/os#arch>
 #[derive(
     Debug, Clone, Copy, Deserialize, Serialize, AllVariants, PartialEq, Eq, PartialOrd, Ord,
 )]
@@ -50,6 +53,8 @@ pub enum OsType {
     WindowsNt,
 }
 
+/// Possible values of the string identifying the operating system platform.
+/// The value is set at compile time.
 #[derive(
     Debug, Clone, Copy, Deserialize, Serialize, AllVariants, PartialEq, Eq, PartialOrd, Ord,
 )]
@@ -65,6 +70,66 @@ pub enum Platform {
     Solaris,
     Android,
     Win32,
+}
+
+/// The operating system-specific end-of-line marker.
+///
+/// - `\n` on POSIX
+/// - `\r\n` on Windows
+///
+pub fn eol() -> String {
+    raw::EOL.with(|e| e.clone())
+}
+
+/// Returns the operating system CPU architecture for which the tauri app was compiled.
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/os#arch-1>
+pub async fn arch() -> crate::Result<Arch> {
+    Ok(serde_wasm_bindgen::from_value(raw::arch().await?)?)
+}
+
+/// Returns a String with a `BCP-47` language tag inside. If the locale couldn’t be obtained, null is returned instead.
+///
+/// Since: 1.4.0
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/os#locale>
+pub async fn locale() -> crate::Result<Option<String>> {
+    Ok(serde_wasm_bindgen::from_value(raw::locale().await?)?)
+}
+
+/// Returns a string identifying the operating system platform.
+/// The value is set at compile time.
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/os#platform-1>
+pub async fn platform() -> crate::Result<Platform> {
+    Ok(serde_wasm_bindgen::from_value(raw::locale().await?)?)
+}
+
+/// Returns the operating system's default directory for temporary files as a string.
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/os#tempdir>
+pub async fn tempdir() -> crate::Result<String> {
+    raw::tempdir()
+        .await?
+        .as_string()
+        .ok_or(crate::Error::JsStringToString)
+}
+
+/// Returns [`OsType::Linux`] on Linux, [`OsType::Darwin`] on macOS, and [`OsType::WindowsNt`] on Windows.
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/os#type>
+pub async fn type_() -> crate::Result<OsType> {
+    Ok(serde_wasm_bindgen::from_value(raw::type_().await?)?)
+}
+
+/// Returns a string identifying the kernel version.
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/os#version>
+pub async fn version() -> crate::Result<String> {
+    raw::version()
+        .await?
+        .as_string()
+        .ok_or(crate::Error::JsStringToString)
 }
 
 #[cfg(test)]
