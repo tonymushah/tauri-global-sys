@@ -73,6 +73,7 @@ impl<S: AsRef<str>> From<S> for Options {
     }
 }
 
+/// Ref: <http://v1.tauri.app/v1/api/js/notification#permission>
 #[derive(
     Debug,
     Clone,
