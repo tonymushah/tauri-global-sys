@@ -102,7 +102,7 @@ pub async fn locale() -> crate::Result<Option<String>> {
 ///
 /// Ref: <http://v1.tauri.app/v1/api/js/os#platform-1>
 pub async fn platform() -> crate::Result<Platform> {
-    Ok(serde_wasm_bindgen::from_value(raw::locale().await?)?)
+    Ok(serde_wasm_bindgen::from_value(raw::platform().await?)?)
 }
 
 /// Returns the operating system's default directory for temporary files as a string.
