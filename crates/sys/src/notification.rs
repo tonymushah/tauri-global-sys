@@ -95,3 +95,62 @@ pub enum Permission {
     #[default]
     Default,
 }
+
+/// Checks if the permission to send notifications is granted.
+///
+/// ```rs,norun
+/// use tauri_global_sys::notification::is_permission_granted;
+///
+/// let permission_granted = is_permission_granted().await?;
+/// ```
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/notification#ispermissiongranted>
+pub async fn is_permission_granted() -> crate::Result<bool> {
+    Ok(raw::isPermissionGranted().await?.value_of())
+}
+
+/// Requests the permission to send notifications.
+///
+/// ```rs,norun
+/// use tauri_global_sys::notification::{is_permission_granted, request_permission, Permission};
+///
+/// let mut permission_granted = is_permission_granted().await?;
+/// if !permission_granted {
+///     let permission = request_permission().await?;
+///     permission_granted = permission == Permission::Granted;
+/// }
+/// ```
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/notification#requestpermission>
+pub async fn request_permission() -> crate::Result<Permission> {
+    Ok(serde_wasm_bindgen::from_value(
+        raw::requestPermission().await?,
+    )?)
+}
+
+/// Sends a notification to the user.
+///
+/// ```rs,norun
+/// use tauri_global_sys::notification::{is_permission_granted, request_permission, Permission, send_notification};
+///
+/// let mut permission_granted = is_permission_granted().await?;
+/// if !permission_granted {
+///     let permission = request_permission().await?;
+///     permission_granted = permission == Permission::Granted;
+/// }
+/// if permission_granted {
+///     send_notification("Tauri is awesome!".into())?;
+///     send_notification(Options {
+///         title: "TAURI",
+///         body: Some("Tauri is awesome!".into()),
+///         sound: None,
+///         icon: None
+///     })?;
+/// }
+/// ```
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/notification#sendnotification>
+pub fn send_notification(options: Options) -> crate::Result<()> {
+    raw::sendNotification(serde_wasm_bindgen::to_value(&options)?)?;
+    Ok(())
+}
