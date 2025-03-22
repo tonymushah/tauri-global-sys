@@ -121,9 +121,9 @@ impl Client {
             let maybe_client = get_raw_client_wrapper(options.into()).await;
             let wrapper = match maybe_client {
                 Ok(cli) => cli,
-                Err(err) => {
+                Err(_err) => {
                     #[cfg(feature = "log")]
-                    log::error!("{err}");
+                    log::error!("{_err}");
                     return;
                 }
             };
