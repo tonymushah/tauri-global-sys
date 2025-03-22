@@ -7,4 +7,5 @@ pub mod format_debug;
 pub mod fs;
 pub mod global_shortcuts;
 pub mod greet;
+pub mod notification;
 pub mod test_event;

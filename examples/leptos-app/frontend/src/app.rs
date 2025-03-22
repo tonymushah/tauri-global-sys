@@ -6,7 +6,8 @@ pub mod utils;
 
 use components::{
     app_module::AppModule, cli_matches_test::TestCliMatches, clip_board::ClipBoard, dialog::Dialog,
-    fetch::Fetch, fs::Fs, global_shortcuts::GlobalShortcut, greet::Greet, test_event::TestEvent,
+    fetch::Fetch, fs::Fs, global_shortcuts::GlobalShortcut, greet::Greet,
+    notification::Notification, test_event::TestEvent,
 };
 use leptos::prelude::*;
 
@@ -70,6 +71,10 @@ fn Features() -> impl IntoView {
 
         <FeatureDion title="Fetch".into() flex_col=true>
             <Fetch />
+        </FeatureDion>
+
+        <FeatureDion title="Notification".into() flex_col=true>
+            <Notification />
         </FeatureDion>
     }
 }
