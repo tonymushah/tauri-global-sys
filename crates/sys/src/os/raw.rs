@@ -21,7 +21,8 @@ extern "C" {
     #[wasm_bindgen(catch)]
     pub async fn locale() -> Result<JsValue, JsValue>;
 
-    /// Returns a string identifying the operating system platform. The value is set at compile time. Possible values are `linux`, `darwin`, `ios`, `freebsd`, `dragonfly`, `netbsd`, `openbsd`, `solaris`, `android`, `win32`
+    /// Returns a string identifying the operating system platform. The value is set at compile time.
+    /// Possible values are `linux`, `darwin`, `ios`, `freebsd`, `dragonfly`, `netbsd`, `openbsd`, `solaris`, `android`, `win32`
     ///
     /// Ref: <http://v1.tauri.app/v1/api/js/os#platform-1>
     #[wasm_bindgen(catch)]
