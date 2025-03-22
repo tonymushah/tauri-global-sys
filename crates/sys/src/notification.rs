@@ -16,6 +16,8 @@
 //!  }
 //! }
 //! ```
+//!
+//! Tony Mushah Note: the [`send_notification`] function doesn't work really well on (Fedora 41) Linux. *Probably a Webkit issue...*
 
 use enum_all_variants::AllVariants;
 use serde::{Deserialize, Serialize};
