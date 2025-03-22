@@ -15,9 +15,11 @@ pub fn Notification() -> impl IntoView {
             let permission = request_permission()
                 .map_err(|err| anyhow::format_err!("{err}"))
                 .await?;
+            log::debug!("Permission: {:?}", permission);
             permission_granted = permission == Permission::Granted;
         }
         if permission_granted {
+            log::trace!("Sending notification");
             send_notification("Tauri is awesome!".into())
                 .map_err(|err| anyhow::format_err!("{err}"))?;
             send_notification(SendNotificationOptions {
@@ -39,8 +41,10 @@ pub fn Notification() -> impl IntoView {
                 _ => ().into_any(),
             }
         }}
-        <button on:click=move |_| {
-            action.dispatch_local(());
-        }>"Notification"</button>
+        <div>
+            <button on:click=move |_| {
+                action.dispatch_local(());
+            }>"Notification"</button>
+        </div>
     }
 }
