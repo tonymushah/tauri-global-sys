@@ -7,7 +7,7 @@ pub mod utils;
 use components::{
     app_module::AppModule, cli_matches_test::TestCliMatches, clip_board::ClipBoard, dialog::Dialog,
     fetch::Fetch, fs::Fs, global_shortcuts::GlobalShortcut, greet::Greet,
-    notification::Notification, test_event::TestEvent,
+    notification::Notification, os::Os, test_event::TestEvent,
 };
 use leptos::prelude::*;
 
@@ -75,6 +75,10 @@ fn Features() -> impl IntoView {
 
         <FeatureDion title="Notification".into() flex_col=true>
             <Notification />
+        </FeatureDion>
+
+        <FeatureDion title="Os".into() flex_col=true>
+            <Os />
         </FeatureDion>
     }
 }

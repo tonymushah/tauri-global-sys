@@ -8,4 +8,5 @@ pub mod fs;
 pub mod global_shortcuts;
 pub mod greet;
 pub mod notification;
+pub mod os;
 pub mod test_event;
