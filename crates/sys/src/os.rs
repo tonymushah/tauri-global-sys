@@ -20,6 +20,7 @@
 
 use enum_all_variants::AllVariants;
 use serde::{Deserialize, Serialize};
+pub mod raw;
 
 #[derive(
     Debug, Clone, Copy, Deserialize, Serialize, AllVariants, PartialEq, Eq, PartialOrd, Ord,
