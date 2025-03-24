@@ -29,6 +29,9 @@ pub mod notification;
 /// The equivalent of the [`window.__TAURI__.os`](https://v1.tauri.app/v1/api/js/os) module.
 ///
 pub mod os;
+/// The equivalent of the [`window.__TAURI__.path`](https://v1.tauri.app/v1/api/js/path) module.
+///
+pub mod path;
 /// The equivalent of the [`window.__TAURI__.tauri`](https://v1.tauri.app/v1/api/js/tauri) module.
 ///
 pub mod tauri;
