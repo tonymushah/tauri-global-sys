@@ -63,3 +63,14 @@ pub async fn extname(path: &str) -> crate::Result<String> {
 pub async fn is_absolute(path: &str) -> crate::Result<bool> {
     Ok(raw::isAbsolute(path).await?.into())
 }
+
+/// Joins all given `path` segments together
+/// using the platform-specific separator as a delimiter,
+/// then normalizes the resulting path.
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/path#join>
+pub async fn join(paths: Vec<String>) -> crate::Result<String> {
+    Ok(raw::join(serde_wasm_bindgen::to_value(&paths)?)
+        .await?
+        .into())
+}

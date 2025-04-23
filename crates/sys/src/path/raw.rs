@@ -38,4 +38,11 @@ extern "C" {
     #[wasm_bindgen(catch)]
     pub async fn isAbsolute(path: &str) -> Result<Boolean, JsValue>;
 
+    /// Joins all given `path` segments together
+    /// using the platform-specific separator as a delimiter,
+    /// then normalizes the resulting path.
+    ///
+    /// Ref: <http://v1.tauri.app/v1/api/js/path#join>
+    #[wasm_bindgen(catch)]
+    pub async fn join(paths: JsValue) -> Result<JsString, JsValue>;
 }
