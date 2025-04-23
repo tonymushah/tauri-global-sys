@@ -25,4 +25,10 @@ extern "C" {
     /// Ref: <http://v1.tauri.app/v1/api/js/path#dirname>
     #[wasm_bindgen(catch)]
     pub async fn dirname(dir: &str) -> Result<JsString, JsValue>;
+
+    /// Returns the extension of the `path`.
+    ///
+    /// Ref: <http://v1.tauri.app/v1/api/js/path#extname>
+    #[wasm_bindgen(catch)]
+    pub async fn extname(path: &str) -> Result<JsString, JsValue>;
 }

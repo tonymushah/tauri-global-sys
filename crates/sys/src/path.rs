@@ -46,3 +46,13 @@ pub async fn dirname(dir: &str) -> crate::Result<String> {
         .as_string()
         .ok_or(crate::Error::JsStringToString)
 }
+
+/// Returns the extension of the `path`.
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/path#extname>
+pub async fn extname(path: &str) -> crate::Result<String> {
+    raw::extname(path)
+        .await?
+        .as_string()
+        .ok_or(crate::Error::JsStringToString)
+}
