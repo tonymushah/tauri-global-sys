@@ -81,3 +81,13 @@ pub async fn join(paths: Vec<String>) -> crate::Result<String> {
 pub async fn normalize(path: &str) -> crate::Result<String> {
     Ok(raw::normalize(path).await?.into())
 }
+
+macro_rules! dirs {
+    ($($name:ident => $raw:ident),*) => {
+        $(
+            pub async fn $name() -> crate::Result<String> {
+                Ok(raw::$raw().await?.into())
+            }
+        )*
+    };
+}

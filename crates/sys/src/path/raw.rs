@@ -52,3 +52,14 @@ extern "C" {
     #[wasm_bindgen(catch)]
     pub async fn normalize(path: &str) -> Result<JsString, JsValue>;
 }
+
+macro_rules! dirs {
+    ($($func_name:ident),*) => {
+        #[wasm_bindgen(js_namespace = ["window", "__TAURI__", "path"])]
+        extern "C" {
+            $(
+                pub async fn $func_name() -> Result<JsString, JsValue>;
+            )*
+        }
+    };
+}
