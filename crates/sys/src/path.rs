@@ -74,3 +74,10 @@ pub async fn join(paths: Vec<String>) -> crate::Result<String> {
         .await?
         .into())
 }
+
+/// Normalizes the given path, resolving `..` and `.` segments and resolve symbolic links.
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/path#normalize>
+pub async fn normalize(path: &str) -> crate::Result<String> {
+    Ok(raw::normalize(path).await?.into())
+}

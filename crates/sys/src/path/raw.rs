@@ -45,4 +45,10 @@ extern "C" {
     /// Ref: <http://v1.tauri.app/v1/api/js/path#join>
     #[wasm_bindgen(catch)]
     pub async fn join(paths: JsValue) -> Result<JsString, JsValue>;
+
+    /// Normalizes the given path, resolving `..` and `.` segments and resolve symbolic links.
+    ///
+    /// Ref: <http://v1.tauri.app/v1/api/js/path#normalize>
+    #[wasm_bindgen(catch)]
+    pub async fn normalize(path: &str) -> Result<JsString, JsValue>;
 }
