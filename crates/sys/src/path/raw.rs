@@ -1,3 +1,4 @@
+use js_sys::JsString;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(js_namespace = ["window", "__TAURI__", "path"])]
@@ -17,4 +18,11 @@ extern "C" {
     /// Ref: <http://v1.tauri.app/v1/api/js/path#sep>
     #[wasm_bindgen(thread_local_v2, js_name = "sep")]
     pub static SEP: String;
+
+    /// Returns the directory name of a path.
+    /// Trailing directory separators are ignored.
+    ///
+    /// Ref: <http://v1.tauri.app/v1/api/js/path#dirname>
+    #[wasm_bindgen(catch)]
+    pub async fn dirname(dir: &str) -> Result<JsString, JsValue>;
 }

@@ -35,3 +35,14 @@ pub fn delimiter() -> String {
 pub fn sep() -> String {
     raw::SEP.with(Clone::clone)
 }
+
+/// Returns the directory name of a path.
+/// Trailing directory separators are ignored.
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/path#dirname>
+pub async fn dirname(dir: &str) -> crate::Result<String> {
+    raw::dirname(dir)
+        .await?
+        .as_string()
+        .ok_or(crate::Error::JsStringToString)
+}
