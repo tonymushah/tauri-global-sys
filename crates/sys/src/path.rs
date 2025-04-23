@@ -56,3 +56,10 @@ pub async fn extname(path: &str) -> crate::Result<String> {
         .as_string()
         .ok_or(crate::Error::JsStringToString)
 }
+
+/// Returns whether the `path` is absolute or not.
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/path#isabsolute>
+pub async fn is_absolute(path: &str) -> crate::Result<bool> {
+    Ok(raw::isAbsolute(path).await?.into())
+}

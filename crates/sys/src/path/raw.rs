@@ -1,4 +1,4 @@
-use js_sys::JsString;
+use js_sys::{Boolean, JsString};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(js_namespace = ["window", "__TAURI__", "path"])]
@@ -31,4 +31,11 @@ extern "C" {
     /// Ref: <http://v1.tauri.app/v1/api/js/path#extname>
     #[wasm_bindgen(catch)]
     pub async fn extname(path: &str) -> Result<JsString, JsValue>;
+
+    /// Returns whether the `path` is absolute or not.
+    ///
+    /// Ref: <http://v1.tauri.app/v1/api/js/path#isabsolute>
+    #[wasm_bindgen(catch)]
+    pub async fn isAbsolute(path: &str) -> Result<Boolean, JsValue>;
+
 }
