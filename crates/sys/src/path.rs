@@ -17,3 +17,21 @@
 //!
 //! It is recommended to allowlist only the APIs you use for optimal bundle size and security.
 pub mod raw;
+
+/// Provides the platform-specific path segment delimiter:
+/// - `;` on Windows
+/// - `:` on POSIX
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/path#delimiter>
+pub fn delimiter() -> String {
+    raw::DELIMITER.with(Clone::clone)
+}
+
+/// Provides the platform-specific path segment separator:
+/// - `\` on Windows
+/// - `/` on POSIX
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/path#sep>
+pub fn sep() -> String {
+    raw::SEP.with(Clone::clone)
+}
