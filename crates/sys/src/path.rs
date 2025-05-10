@@ -82,6 +82,11 @@ pub async fn normalize(path: &str) -> crate::Result<String> {
     Ok(raw::normalize(path).await?.into())
 }
 
+/// Resolve the path to a resource file.
+pub async fn resolve_resource(path: &str) -> crate::Result<String> {
+    Ok(raw::resolveResource(path).await?.into())
+}
+
 macro_rules! dirs {
     ($($name:ident => $raw:ident),*) => {
         $(

@@ -51,6 +51,10 @@ extern "C" {
     /// Ref: <http://v1.tauri.app/v1/api/js/path#normalize>
     #[wasm_bindgen(catch)]
     pub async fn normalize(path: &str) -> Result<JsString, JsValue>;
+
+    /// Resolve the path to a resource file.
+    #[wasm_bindgen(catch)]
+    pub async fn resolveResource(resource_path: &str) -> Result<JsString, JsValue>;
 }
 
 macro_rules! dirs {
