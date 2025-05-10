@@ -83,8 +83,19 @@ pub async fn normalize(path: &str) -> crate::Result<String> {
 }
 
 /// Resolve the path to a resource file.
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/path#resolveresource>
 pub async fn resolve_resource(path: &str) -> crate::Result<String> {
     Ok(raw::resolveResource(path).await?.into())
+}
+
+/// Resolves a sequence of paths or path segments into an absolute path.
+///
+/// Ref: <http://v1.tauri.app/v1/api/js/path#resolve>
+pub async fn resolve(paths: Vec<String>) -> crate::Result<String> {
+    Ok(raw::resolve(serde_wasm_bindgen::to_value(&paths)?)
+        .await?
+        .into())
 }
 
 macro_rules! dirs {
