@@ -99,11 +99,38 @@ pub async fn resolve(paths: Vec<String>) -> crate::Result<String> {
 }
 
 macro_rules! dirs {
-    ($($name:ident => $raw:ident),*) => {
+    ($($name:ident => $raw:ident,)*) => {
         $(
             pub async fn $name() -> crate::Result<String> {
                 Ok(raw::$raw().await?.into())
             }
         )*
     };
+}
+
+dirs! {
+    app_cache_dir => appCacheDir,
+    app_config_dir => appConfigDir,
+    app_data_dir => appDataDir,
+    app_dir => appDir,
+    app_local_dir => appLocalDataDir,
+    app_log_dir => appLogDir,
+    audio_dir => audioDir,
+    cache_dir => cacheDir,
+    config_dir => configDir,
+    data_dir => dataDir,
+    desktop_dir => desktopDir,
+    document_dir => documentDir,
+    download_dir => downloadDir,
+    executable_dir => executableDir,
+    font_dir => fontDir,
+    home_dir => homeDir,
+    local_data_dir => localDataDir,
+    log_dir => logDir,
+    picture_dir => pictureDir,
+    public_dir => publicDir,
+    resource_dir => resourceDir,
+    runtime_dir => runtimeDir,
+    template_dir => templateDir,
+    video_dir => videoDir,
 }
