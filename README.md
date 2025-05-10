@@ -38,9 +38,11 @@ This repository is still work in progress so some tauri features may not be impl
 - [ ] [v2 plugins] ??
 
 ### Why the `mocks` api isn't supported?
+
 Because we can't access them in the webview.
 
 ## Licence
+
 MIT
 
 [tauri-sys]: https://github.com/JonasKruckenberg/tauri-sys
