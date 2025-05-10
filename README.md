@@ -17,7 +17,7 @@ This repository is still work in progress so some tauri features may not be impl
   - [X] [http](https://v1.tauri.app/v1/api/js/http)
   - [X] [notification](https://v1.tauri.app/v1/api/js/notification)
   - [X] [os](https://v1.tauri.app/v1/api/js/os)
-  - [ ] [path](https://v1.tauri.app/v1/api/js/path)
+  - [X] [path](https://v1.tauri.app/v1/api/js/path)
   - [ ] [process](https://v1.tauri.app/v1/api/js/process)
   - [ ] [shell](https://v1.tauri.app/v1/api/js/shell)
   - [X] [tauri](https://v1.tauri.app/v1/api/js/tauri)
