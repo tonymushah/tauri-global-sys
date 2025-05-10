@@ -66,12 +66,40 @@ extern "C" {
 }
 
 macro_rules! dirs {
-    ($($func_name:ident),*) => {
+    ($($func_name:ident,)*) => {
         #[wasm_bindgen(js_namespace = ["window", "__TAURI__", "path"])]
         extern "C" {
             $(
+                #[wasm_bindgen(catch)]
                 pub async fn $func_name() -> Result<JsString, JsValue>;
             )*
         }
     };
+}
+
+dirs! {
+    appCacheDir,
+    appConfigDir,
+    appDataDir,
+    appDir,
+    appLocalDataDir,
+    appLogDir,
+    audioDir,
+    cacheDir,
+    configDir,
+    dataDir,
+    desktopDir,
+    documentDir,
+    downloadDir,
+    executableDir,
+    fontDir,
+    homeDir,
+    localDataDir,
+    logDir,
+    pictureDir,
+    publicDir,
+    resourceDir,
+    runtimeDir,
+    templateDir,
+    videoDir,
 }
