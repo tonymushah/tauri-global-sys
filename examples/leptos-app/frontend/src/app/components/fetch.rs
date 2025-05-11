@@ -46,7 +46,7 @@ pub fn Fetch() -> impl IntoView {
     });
     action.dispatch_local(());
     let is_pending = action.pending();
-    let action_value = action.value_local().read_only();
+    let action_value = action.value();
     view! {
         <div>
             <input type="text" placeholder="Url" bind:value=(url, set_url) />

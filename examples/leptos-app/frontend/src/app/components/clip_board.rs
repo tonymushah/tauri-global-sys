@@ -5,7 +5,7 @@ use tauri_global_sys::clipboard::{read_text, write_text};
 fn ReadText() -> impl IntoView {
     let clip_board_res = LocalResource::new(|| async { read_text().await });
     let clip_board_data = move || {
-        clip_board_res.read().as_deref().map(|res| match res {
+        clip_board_res.read().as_ref().map(|res| match res {
             Ok(maybe_content) => {
                 let maybe_content = maybe_content.clone();
                 view! {

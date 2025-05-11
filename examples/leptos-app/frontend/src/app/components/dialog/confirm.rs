@@ -8,7 +8,7 @@ use crate::app::utils::deser_form_data::deser_form_data;
 
 #[component]
 pub fn Confirm() -> impl IntoView {
-    let action = Action::<_, anyhow::Result<_>, _>::new_local(|form_data: &FormData| {
+    let action = Action::<_, anyhow::Result<_>>::new_local(|form_data: &FormData| {
         let form_data = form_data.clone();
         async move {
             let options: Option<ConfirmDialogOptions> =
@@ -26,7 +26,7 @@ pub fn Confirm() -> impl IntoView {
             Ok(is_confirmed)
         }
     });
-    let action_value = action.value_local();
+    let action_value = action.value();
     let action_status = action.pending();
     view! {
         {move || {

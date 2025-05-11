@@ -30,7 +30,7 @@ pub fn RenameFile() -> impl IntoView {
     let (source, set_source) = signal(None::<String>);
     let (destination, set_destination) = signal(None::<String>);
     let action =
-        Action::<_, anyhow::Result<ActionTypeKind>, _>::new_local(move |input: &ActionType| {
+        Action::<_, anyhow::Result<ActionTypeKind>>::new_local(move |input: &ActionType| {
             let input = input.clone();
             async move {
                 match input {
@@ -95,7 +95,7 @@ pub fn RenameFile() -> impl IntoView {
                 }
             }
         });
-    let action_data = action.value_local();
+    let action_data = action.value();
     let is_loading = action.pending();
     view! {
         {move || {

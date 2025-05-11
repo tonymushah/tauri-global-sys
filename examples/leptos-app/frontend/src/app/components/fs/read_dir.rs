@@ -52,7 +52,7 @@ fn FileEntryComponnent(entry: FileEntry) -> impl IntoView {
 
 #[component]
 pub fn ReadDir() -> impl IntoView {
-    let action = Action::<_, anyhow::Result<Vec<FileEntry>>, _>::new_local(|_: &()| async move {
+    let action = Action::<_, anyhow::Result<Vec<FileEntry>>>::new_local(|_: &()| async move {
         let dir = open(Some(OpenDialogOptions {
             directory: Some(true),
             title: Some(String::from("Select a directory")),
@@ -73,7 +73,7 @@ pub fn ReadDir() -> impl IntoView {
         .map_err(|err| anyhow::format_err!("{err}"))
     });
     let action_pending = action.pending();
-    let action_value = action.value_local();
+    let action_value = action.value();
     view! {
         {move || {
             match action_value.read().as_ref() {

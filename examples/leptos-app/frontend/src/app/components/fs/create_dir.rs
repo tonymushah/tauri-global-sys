@@ -14,7 +14,7 @@ const BASE_DIR_SELECT_NAME: &str = "something_base_dir_dsad";
 
 #[component]
 pub fn CreateDir() -> impl IntoView {
-    let action = Action::<_, anyhow::Result<()>, _>::new_local(|form_data: &FormData| {
+    let action = Action::<_, anyhow::Result<()>>::new_local(|form_data: &FormData| {
         let form_data = form_data.clone();
         async move {
             let mut options: Option<FsDirOptions> =
@@ -42,7 +42,7 @@ pub fn CreateDir() -> impl IntoView {
             Ok(())
         }
     });
-    let action_value = action.value_local();
+    let action_value = action.value();
     let action_pending = action.pending();
 
     view! {

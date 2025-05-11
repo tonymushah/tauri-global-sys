@@ -28,7 +28,7 @@ const ACTION_TYPE_SELECT: &str = "action_type";
 #[component]
 pub fn ReadFile() -> impl IntoView {
     let action =
-        Action::<_, anyhow::Result<ReadActionReturn>, _>::new_local(|form_data: &FormData| {
+        Action::<_, anyhow::Result<ReadActionReturn>>::new_local(|form_data: &FormData| {
             let form_data = form_data.clone();
             async move {
                 let options = Some(FsOptions {
@@ -60,7 +60,7 @@ pub fn ReadFile() -> impl IntoView {
                 }
             }
         });
-    let action_value = action.value_local().read_only();
+    let action_value = action.value();
     let action_pending = action.pending();
     view! {
         <div>

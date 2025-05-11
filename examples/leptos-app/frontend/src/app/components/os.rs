@@ -7,7 +7,7 @@ use tauri_global_sys::os::{arch, locale, platform, tempdir, type_, version};
 fn LocalResourceView<T: Debug + 'static, E: Error + 'static>(
     res: LocalResource<Result<T, E>>,
 ) -> impl IntoView {
-    move || match res.read().as_deref() {
+    move || match res.read().as_ref() {
         None => view! { <i>"Loading"</i> }.into_any(),
         Some(Ok(d)) => view! { <span>{format!("{d:?}")}</span> }.into_any(),
         Some(Err(err)) => {

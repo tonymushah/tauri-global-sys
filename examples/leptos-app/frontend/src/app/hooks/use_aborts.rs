@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use std::sync::{Arc, Mutex};
 
 use futures::{future::AbortHandle as FutureAbortHandle, stream::AbortHandle as StreamAbortHandle};
