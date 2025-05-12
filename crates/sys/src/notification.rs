@@ -52,7 +52,7 @@ pub struct Options {
     ///     - `/Network/Library/Sounds`
     ///     - `/System/Library/Sounds`
     ///       \
-    ///         See the [NSSound](https://developer.apple.com/documentation/appkit/nssound) docs for more information.\
+    ///       See the [NSSound](https://developer.apple.com/documentation/appkit/nssound) docs for more information.\
     ///
     /// Since: Tauri 1.5.0
     ///

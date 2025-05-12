@@ -13,7 +13,7 @@ enum RemoveType {
 
 #[component]
 pub fn RemoveSmth() -> impl IntoView {
-    let action = Action::<_, anyhow::Result<_>, _>::new_local(|type_: &RemoveType| {
+    let action = Action::<_, anyhow::Result<_>>::new_local(|type_: &RemoveType| {
         let type_ = *type_;
         async move {
             let to_remove = open(
@@ -56,7 +56,7 @@ pub fn RemoveSmth() -> impl IntoView {
             Ok((to_remove, type_))
         }
     });
-    let action_value = action.value_local().read_only();
+    let action_value = action.value();
     let action_pending = action.pending();
     view! {
         {move || {

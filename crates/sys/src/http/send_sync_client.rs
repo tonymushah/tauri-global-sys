@@ -78,7 +78,7 @@ fn make_request(req: HttpOptions) -> (Request, Receiver<Result<Response<Value>, 
 /// - If the client is not initialized, the [`UnboundedReceiver`](futures::channel::mpsc::UnboundedReceiver) is dropped. Making the actual [`Client`] unusable :).
 /// - Else, the local task will wait for any request from the receiver.
 /// - If the local task receives a request from the [`UnboundedReceiver`](futures::channel::mpsc::UnboundedReceiver),
-///     the request will be now processed into another local task preventing any latency when receiving a request.
+///   the request will be now processed into another local task preventing any latency when receiving a request.
 /// - If all of the [`Client`], no more messages will be received so the [`RawClientWrapper`](`crate::http::raw::RawClientWrapper`) within the local task is dropped.
 ///
 /// When you call [`Client::send_request`] and the others, it will:

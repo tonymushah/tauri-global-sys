@@ -15,7 +15,7 @@ const PATH_INAME: &str = "to_check";
 
 #[component]
 pub fn Exists() -> impl IntoView {
-    let action = Action::<_, anyhow::Result<_>, _>::new_local(|form_data: &FormData| {
+    let action = Action::<_, anyhow::Result<_>>::new_local(|form_data: &FormData| {
         let form_data = form_data.clone();
         async move {
             let options = Some(FsOptions {
@@ -42,7 +42,7 @@ pub fn Exists() -> impl IntoView {
     });
 
     let action_pending = action.pending();
-    let action_value = action.value_local().read_only();
+    let action_value = action.value();
     view! {
         {move || {
             match action_value.read().as_ref().filter(|_| action_pending.read() == false) {

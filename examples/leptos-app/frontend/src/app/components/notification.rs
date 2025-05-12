@@ -33,7 +33,7 @@ pub fn Notification() -> impl IntoView {
         anyhow::Ok(())
     });
     let action_pending = action.pending();
-    let action_value = action.value_local().read_only();
+    let action_value = action.value();
     view! {
         {move || {
             match action_value.read().as_ref().filter(|_| action_pending.read() == false) {

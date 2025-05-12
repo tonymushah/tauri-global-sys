@@ -45,7 +45,7 @@ const WRITE_MODE_SELECT_NAME: &str = "write-mode";
 
 #[component]
 pub fn WriteFile() -> impl IntoView {
-    let action = Action::<_, anyhow::Result<_>, _>::new_local(|form_data: &FormData| {
+    let action = Action::<_, anyhow::Result<_>>::new_local(|form_data: &FormData| {
         let form_data = form_data.clone();
         async move {
             let content = form_data
@@ -113,7 +113,7 @@ pub fn WriteFile() -> impl IntoView {
             Ok(path)
         }
     });
-    let action_value = action.value_local();
+    let action_value = action.value();
     let action_pending = action.pending();
     view! {
         {move || {

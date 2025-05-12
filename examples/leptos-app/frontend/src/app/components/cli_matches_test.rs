@@ -7,7 +7,7 @@ use tauri_global_sys::cli::get_matches;
 pub fn TestCliMatches() -> impl IntoView {
     let res = LocalResource::new(|| async { get_matches().await.map_err(|e| e.to_string()) });
     let data = move || {
-        res.get().as_deref().map(|e| match e {
+        res.get().as_ref().map(|e| match e {
             Ok(ok) => view! { <code>{format!("{:#?}", ok)}</code> }.into_any(),
             Err(e) => view! {
                 <div class=styles::error>
